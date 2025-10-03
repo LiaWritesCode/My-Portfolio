@@ -423,6 +423,7 @@ body.fade-bg::before {
   opacity: 0;
   visibility: hidden;
   transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+  vertical-align: middle;
 }
 
 .back-btn.visible,
@@ -484,6 +485,10 @@ body.fade-bg::before {
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+}
+
+.btn-container a {
+  display: inline-block;
 }
 
 #replay-btn:hover {
