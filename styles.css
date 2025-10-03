@@ -573,7 +573,7 @@ p {
 }
 
 .sigil:hover {
-  /* cursor: url("assets/bat.ani"), url("assets/bat.cur"), auto; */
+  cursor: url("assets/bat.ani"), url("assets/bat.cur"), auto; 
   filter: drop-shadow(0 0 8px #9085d5);
   opacity: 1;
 }
