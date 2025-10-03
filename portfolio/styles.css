@@ -1,0 +1,1404 @@
+/* ---------------> LANDING PAGE & MAIN CSS <--------------- */
+
+@font-face {
+  font-family: "sourcecodepro";
+  src: url("assets/fonts/sourcecodepro.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+a.active {
+  color: #fcfffd !important;
+}
+
+body {
+  background-color: #1a1a1a !important;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  align-items: center;
+  background-color: #222222;
+  border: 1px solid #9085d5;
+  color: #fcfffd;
+  font-family: "sourcecodepro";
+  margin-top: 20px;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: #1a1a1a;
+  border-color: black;
+  color: #c5ff47;
+}
+
+header {
+  background-color: #222222;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+p {
+  color: #fcfffd !important;
+  font-family: "Lora", serif;
+  font-size: 14px;
+}
+
+.site-content {
+  background-color: #222222;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  margin-bottom: 0;
+  max-width: 1200px;
+  min-height: 100vh;
+  padding: 40px 20px;
+  padding-bottom: 0;
+}
+
+.vesta {
+  color: #c5ff47;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+}
+
+/* ---------------> HERO <--------------- */
+
+.contact-btn {
+  align-items: center;
+  background-color: #222222;
+  border: 1px solid #9085d5;
+  color: #fcfffd;
+  font-family: "sourcecodepro";
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.contact-btn:hover {
+  background-color: #1a1a1a;
+  border-color: black;
+  color: #c5ff47;
+}
+
+.hero-container {
+  align-items: flex-start;
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  padding: 40px 20px;
+}
+
+.hero-header {
+  color: #fcfffd;
+  font-family: "sourcecodepro";
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 100px;
+  margin-bottom: 1rem;
+}
+
+.hero-header .highlight {
+  color: #c5ff47;
+}
+
+.hero-header .highlight-purp {
+  color: #9085d5;
+}
+
+.hero-message {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-right {
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.hero-text {
+  font-size: 16px;
+  line-height: 1.75;
+  margin-top: 40px;
+}
+
+.highlight {
+  color: #c5ff47;
+}
+
+.image-stack {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  width: 300px;
+}
+
+.image-wrapper {
+  align-items: flex-end;
+  display: flex;
+  flex: 1 1 300px;
+  flex-direction: column;
+  gap: 20px;
+  left: -50px;
+  position: relative;
+  width: fit-content;
+}
+
+.image-wrapper img[alt="Lia's profile picture"] {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.sigil-hero {
+  left: -80px;
+  opacity: 0.7;
+  position: absolute;
+  top: 10px;
+  z-index: 1;
+}
+
+.status-box {
+  align-items: center;
+  border: 1px solid #9085d5;
+  color: gray;
+  display: flex;
+  font-size: 14px;
+  gap: 10px;
+  left: -43px;
+  padding-left: 10px;
+  position: relative;
+  text-align: center;
+  top: -10px;
+  width: 300px;
+}
+
+.status-square {
+  background-color: #9085d5;
+  border-radius: 2px;
+  flex-shrink: 0;
+  height: 12px;
+  width: 12px;
+}
+
+.status-text {
+  color: gray !important;
+  font-family: "sourcecodepro";
+}
+
+.vesta-hero {
+  bottom: -30px;
+  color: #c5ff47;
+  font-family: "sourcecodepro";
+  font-size: 100px;
+  opacity: 0.4;
+  position: absolute;
+  right: -10px;
+  z-index: 3;
+}
+
+/* ---------------> PROJECTS PAGE <--------------- */
+
+.caption {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  color: #fcfffd;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lora", serif;
+  font-size: 13px;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.caption h2 {
+  color: #c5ff47;
+  font-family: "sourcecodepro";
+  font-size: 18px;
+}
+
+.quote-projects {
+  height: auto;
+  padding-bottom: 50px;
+  padding-left: 60px;
+  padding-top: 40px;
+  width: 90%;
+}
+
+.overlay-content {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin: 5rem auto;
+  max-width: 1100px;
+  padding: 50px;
+}
+
+.close-overlay {
+  background: none;
+  border: none;
+  color: #fcfffd;
+  cursor: pointer;
+  font-size: 32px;
+  position: absolute;
+  right: 370px;
+  top: 50px;
+}
+
+.project-card,
+#project-card {
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  border: 2px solid #9085d5;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  color: #fcfffd;
+  display: grid;
+  font-family: "sourcecodepro";
+  max-width: 100%;
+  overflow: hidden;
+  place-items: center;
+  position: relative;
+  text-align: center;
+  width: 550px;
+}
+
+.project-card:hover .project-img,
+#project-card:hover .project-img {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .caption,
+#project-card:hover .caption {
+  opacity: 1;
+}
+
+/* Overlay Customization for Projects */
+.card-header {
+  font-family: "sourcecodepro", monospace;
+  color: #c5ff47;
+}
+
+.card-divider {
+  background-color: #9085d5;
+  height: 1px;
+  width: 1000px;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.readme-container {
+  margin-bottom: 40px;
+}
+
+.readme-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -20px;
+}
+
+.readme-highlight {
+  color: #c5ff47;
+}
+
+.readme-header {
+  color: #9085d5;
+  font-family: "sourcecodepro", monospace;
+}
+
+.readme-list {
+  color: #fcfffd;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.status-block {
+  text-align: right;
+  padding-right: 100px;
+}
+
+.code-details {
+  font-style: italic;
+}
+
+.readme-status,
+.readme-status p {
+  color: #fcfffd;
+  font-family: "sourcecodepro", monospace;
+}
+
+.main-readme-text {
+  color: #fcfffd;
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+
+
+
+.project-img {
+  border-radius: 20px;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+#projects-intro {
+  color: #fcfffd;
+  font-family: "sourcecodepro";
+  font-size: 20px;
+  line-height: 1.6;
+  padding-left: 20px;
+}
+
+#projects-intro p {
+  font-family: "Lora", serif;
+  font-size: 16px;
+  padding-right: 20px;
+  text-align: justify;
+}
+
+#project-overlay {
+  background: rgba(26, 26, 26, 0.4);
+  color: #fcfffd;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  overflow-y: auto;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transition: opacity 0.5s ease;
+  width: 100%;
+  z-index: 1000;
+}
+
+#project-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#projects-quote {
+  font-size: 30px;
+  line-height: 1.5;
+}
+
+.projects-wrapper {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 550px);
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 30px 20px;
+}
+
+/* ---------------> NAVIGATION <--------------- */
+
+.nav-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.nav-links {
+  display: flex;
+  font-family: "sourcecodepro";
+  list-style: none;
+  margin: 0;
+  gap: 20px;
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links a:link,
+.nav-links a:visited {
+  color: gray;
+  text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links a:active {
+  color: #fcfffd !important;
+}
+
+.nav-links .vesta {
+  color: #c5ff47;
+  font-weight: bold;
+  margin-right: 0.4em;
+}
+
+/* ---------------> QUOTE SECTION <--------------- */
+
+#inspiration-quote {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 4rem 0;
+  position: relative;
+}
+
+.insp-quote {
+  background-color: transparent;
+  border: 2px solid #9085d5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  padding: 32px;
+  width: fit-content;
+  z-index: 1;
+}
+
+.insp-quote p {
+  font-family: "sourcecodepro";
+  font-size: 30px;
+  font-weight: medium;
+  margin: 0;
+}
+
+.quote-author {
+  background-color: transparent;
+  border: 2px solid #9085d5;
+  bottom: -50px;
+  color: #fcfffd;
+  font-family: "Lora", serif;
+  font-size: 20px;
+  font-style: normal;
+  gap: 10px;
+  padding: 16px;
+  right: -2px;
+  position: absolute;
+  z-index: 2;
+}
+
+.quote-mark {
+  background-color: #222222;
+  color: #c5ff47;
+  font-size: 4rem;
+  padding: 0 0.2rem;
+  position: absolute;
+  z-index: 3;
+}
+
+.quote-mark.left {
+  left: 10px;
+  padding: 8px 4px;
+  top: -1.2rem;
+}
+
+.quote-mark.right {
+  bottom: -5px;
+  padding: 8px 4px;
+  right: 1rem;
+}
+
+/* ---------------> SECTION HEADS <--------------- */
+
+.section-head {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+
+.section-divider {
+  align-self: center;
+  background-color: #9085d5;
+  display: block;
+  flex-grow: 1;
+  height: 1px;
+  margin-left: 1rem;
+  margin-right: 2rem;
+  max-width: 600px;
+}
+
+.section-text {
+  color: #fcfffd;
+  flex-shrink: 0;
+  font-family: "sourcecodepro";
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+.section-title {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  gap: 16px;
+}
+
+/* ---------------> SIGIL <--------------- */
+
+.sigil {
+  cursor: auto;
+  opacity: 0.2;
+  transition: filter 0.4s ease-in-out;
+}
+
+.sigil-container {
+  position: fixed;
+  bottom: 400px;
+  right: 40px;
+  z-index: 1000;
+}
+
+.sigil:hover {
+  cursor: url("assets/bat.ani"), url("/ssets/bat.cur"), auto;
+  filter: drop-shadow(0 0 8px #9085d5);
+  opacity: 1;
+}
+
+.sigil-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* ---------------> PROJECTS CAROUSEL <--------------- */
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.see-more-link {
+  color: #c0bbe7;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.see-more-link:hover {
+  color: #c5ff47;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  color: #c5ff47;
+  cursor: pointer;
+  font-size: 2rem;
+  z-index: 3;
+}
+
+.caption-box {
+  background-color: rgba(0, 0, 0, 0.6);
+  bottom: 0;
+  color: #fcfffd;
+  display: flex;
+  font-size: 14px;
+  height: 20px;
+  left: 0;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  position: relative;
+  right: 0;
+  z-index: 2;
+}
+
+.caption-box::after {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  content: " ";
+  height: 100%;
+  left: -100%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: skewX(-20deg);
+  transition: opacity 0.3s ease;
+  width: 100%;
+}
+
+.caption-box:hover::after {
+  animation: shimmer 1.5s ease-in-out forwards;
+  opacity: 1;
+}
+
+.carousel {
+  display: flex;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.carousel-container {
+  align-items: center;
+  display: flex;
+  height: 500px;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-item {
+  flex: 0 0 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-item img {
+  display: block;
+  height: calc(100% - 50px);
+  object-fit: cover;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.carousel-track,
+.carousel {
+  height: 100%;
+}
+
+.image-box {
+  box-sizing: border-box;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.project-title {
+  color: #c5ff47;
+  font-family: "sourcecodepro";
+  font-weight: 400;
+}
+
+.tech-stack {
+  color: rgb(185, 185, 185);
+  font-family: "sourcecodepro";
+}
+
+/* ---------------> ABOUT LANDING PAGE <--------------- */
+
+.about-container {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.about-image-wrapper {
+  align-items: flex-end;
+  display: flex;
+  flex: 1 1 300px;
+  flex-direction: column;
+  left: -50px;
+  position: relative;
+  width: fit-content;
+}
+
+.about-image-wrapper img {
+  display: block;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.about-text p {
+  text-align: justify;
+  font-family: "Lora", serif;
+  font-size: 16px;
+  line-height: 1.75;
+  max-width: 700px;
+}
+
+.mercury-about,
+.saturn-about {
+  color: #9085d5;
+  font-family: "sourcecodepro";
+  font-size: 100px;
+  position: absolute;
+  z-index: 2;
+}
+
+.mercury-about {
+  bottom: -10px;
+  left: 150px;
+}
+
+.saturn-about {
+  right: 10px;
+  top: -15px;
+}
+
+/* ---------------> CONTACT LANDING PAGE <--------------- */
+
+.contact-box {
+  border: 1px solid gray;
+  flex: 0 0 300px;
+  padding: 20px;
+}
+
+.contact-content {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: space-between;
+  padding-right: 50px;
+}
+
+.contact-content p {
+  flex: 1 1 400px;
+  font-family: "Lora", serif;
+  font-size: 16px;
+  line-height: 1.75;
+  max-width: 50%;
+  padding-left: 20px;
+}
+
+.contact-icon {
+  height: 24px;
+  margin-right: 0.5rem;
+  width: 24px;
+  vertical-align: middle;
+}
+
+.contact-label {
+  color: #fcfffd;
+  font-family: "sourcecodepro";
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 1rem;
+  margin-top: -10px;
+}
+
+.discord,
+.email {
+  color: gray;
+  font-family: "sourcecodepro";
+  font-size: 14px;
+  line-height: 2;
+  vertical-align: middle;
+}
+
+/* ---------------> FOOTER MAIN <--------------- */
+
+.copyright {
+  font-family: "Lora", serif;
+  font-size: 12px;
+  color: gray !important;
+  text-align: center;
+}
+
+footer {
+  border-top: 1px solid #333;
+  color: gray;
+  margin-top: 150px;
+  overflow: hidden;
+  padding: 30px;
+  padding-bottom: 0;
+}
+
+.footer-logo {
+  height: auto;
+  flex-shrink: 0;
+}
+
+.footer-main {
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  max-width: 800px;
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 8px;
+  text-align: left;
+}
+
+.footer-text {
+  color: gray !important;
+  font-family: "sourcecodepro";
+  font-size: 12px;
+  margin-top: 0;
+}
+
+.footer-title {
+  color: rgba(197, 255, 71, 0.5) !important;
+  font-family: "sourcecodepro";
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ---------------> ABOUT-ME PAGE CSS <--------------- */
+
+.about-divider-span {
+  background-color: var(--divider-color, #9085d5);
+  display: block;
+  flex-grow: 1;
+  height: 1.2px;
+  width: 600px;
+  margin-left: 1rem;
+}
+
+.about-header {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.about-pfp {
+  height: 20%;
+  margin-bottom: 10px;
+  width: 20%;
+}
+
+.about-description p {
+  color: #fcfffd !important;
+  flex: 1;
+  font-family: "Lora", serif;
+  font-size: 16px;
+  line-height: 1.75;
+  margin-top: 60px;
+  max-width: 650px;
+  text-align: justify;
+}
+
+.picatrix {
+  color: #c5ff47;
+  font-size: 50px;
+  margin-right: -5px;
+  padding: 0;
+}
+
+#nameTitle {
+  color: #c5ff47;
+  font-family: "sourcecodepro";
+  font-size: 20px;
+  margin-bottom: -20px;
+  opacity: 1;
+  padding: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+/* .quirks-head { // UNSURE IF I WANT TO KEEP OR REPLACE A DIFFERENT SECTION
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+} */
+
+.n-node {
+  color: #c5ff47;
+}
+
+.mercury-about-page,
+.saturn-about-page {
+  color: #9085d5;
+  font-family: "sourcecodepro";
+  font-size: 100px;
+  position: absolute;
+  z-index: 2;
+}
+
+.mercury-about-page {
+  bottom: -10px;
+  left: 20px;
+}
+
+.saturn-about-page {
+  right: 10px;
+  top: -15px;
+}
+
+/* ---------------> INTERACTIVE CONSTELLATION SVG && INFO <--------------- */
+
+@keyframes ripple {
+  0% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px #ffffff);
+  }
+  50% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 20px #ffffff);
+  }
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px #ffffff);
+  }
+}
+
+@keyframes rippleBetelgeuse {
+  0% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px #c5ff47);
+  }
+  50% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 20px #c5ff47);
+  }
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px #c5ff47);
+  }
+}
+
+.betelgeuse {
+  filter: brightness(1) drop-shadow(0 0 4px #fcfffd);
+  opacity: 1;
+  transform-origin: center center;
+  transition: filter 1s ease-in-out, opacity 0.6s ease-in-out;
+}
+
+.betelgeuse.ripple {
+  animation: ripple 1.2s ease-out forwards;
+  transform-origin: center;
+}
+
+.close-btn img {
+  display: block;
+  filter: drop-shadow(0 0 6px #9085d5);
+  height: 24px;
+  margin-inline-start: 460px;
+  padding-top: 0;
+  width: auto;
+}
+
+.constellation {
+  flex-shrink: 0;
+}
+
+.constellation-container {
+  display: flex;
+  position: relative;
+}
+
+#hover-box {
+  backdrop-filter: blur(6px);
+  background-color: rgba(34, 34, 34, 0.7);
+  border: 4px solid rgba(26, 26, 26, 0.7);
+  box-shadow: 0 0 10px #1a1a1a;
+  display: none;
+  max-width: 300px;
+  padding: 4px 10px;
+  pointer-events: none;
+  position: absolute;
+  -webkit-backdrop-filter: blur(6px);
+  width: 250px;
+  z-index: 9999;
+}
+
+#hover-box h3 {
+  border-bottom: 1px solid rgba(144, 133, 213, 0.8);
+  color: rgba(197, 255, 71, 0.8);
+  font-family: "sourcecodepro";
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+#star-summary {
+  color: #fcfffd;
+  font-family: "Lora", serif;
+  font-size: 16px;
+}
+
+#info-box {
+  background: #1a1a1a;
+  border: 1px solid #9085d5;
+  color: rgba(252, 255, 253, 0.2);
+  flex-shrink: 0;
+  font-family: "sourcecodepro";
+  height: 600px;
+  margin-left: auto;
+  margin-right: 50px;
+  max-height: 600px;
+  padding: 20px;
+  position: relative;
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+  scrollbar-width: thin;
+  text-align: justify;
+  width: 500px;
+}
+
+#info-box li {
+  font-family: "Lora", serif;
+  font-size: 16px;
+  line-height: 2;
+  color: #fcfffd;
+}
+
+#info-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+#info-box::-webkit-scrollbar-thumb {
+  background-color: #1a1a1a;
+  border-radius: 3px;
+}
+
+#info-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.info-head {
+  color: rgba(197, 255, 71, 0.8);
+  font-size: 28px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.info-header-bar {
+  align-items: center;
+  background-color: #1a1a1a;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding-left: 20px;
+  min-height: 100px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.info-text {
+  color: rgba(252, 255, 253, 0.8) !important;
+  font-family: "Lora", serif;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.info-scroll-content {
+  max-height: 450px;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 35px;
+}
+
+.justified-info,
+.justified-info ul {
+  text-align: left;
+  line-height: 0.5 !important;
+}
+
+.rigel {
+  filter: brightness(1.2) drop-shadow(0 0 4px #fcfffd);
+  opacity: 1;
+  transform-origin: center center;
+  transition: filter 1s ease-in-out, opacity 0.6s ease-in-out;
+}
+
+.rigel.ripple {
+  animation: ripple 1.2s ease-out forwards;
+
+  transform-origin: center;
+}
+
+.skills-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -50px;
+  overflow: visible;
+}
+
+.skills-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.star {
+  filter: brightness(1) drop-shadow(0 0 4px #fcfffd);
+  opacity: 1;
+  transform-origin: center center;
+  transition: filter 1s ease-in-out, opacity 0.6s ease-in-out;
+}
+
+#main-info-text,
+#star-header {
+  grid-column: 1;
+}
+
+#star-header h2 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+#star-info {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  padding: 1rem;
+}
+
+#star-info h2 {
+  color: rgba(197, 255, 71, 0.8);
+  font-weight: 600;
+}
+
+#star-info p {
+  color: rgb(252, 255, 253, 0.8) !important;
+  font-family: "Lora", serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.star-info-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  overflow-wrap: break-word;
+}
+
+.star.ripple {
+  animation: ripple 1.2s ease-out forwards;
+  transform-origin: center;
+}
+
+.svg-container {
+  align-items: flex-start;
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  overflow: visible;
+}
+
+.svg-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  max-width: 600px;
+}
+
+.instructions {
+  color: rgba(197, 255, 71, 0.8);
+  font-size: 20px;
+}
+
+/* ---------------> CONTACT POP-UP CSS <--------------- */
+
+@media (max-width: 600px) {
+  .input-row {
+    flex-direction: column;
+  }
+}
+
+.close-button {
+  cursor: pointer;
+  font-size: 1.5rem;
+  grid-column: 2;
+  justify-self: end;
+  position: absolute;
+  right: 1rem;
+  top: 0.7rem;
+}
+
+.contact-modal {
+  align-items: center;
+  background-color: #222222;
+  border: 3px solid black;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+  display: flex;
+  font-family: "sourcecodepro";
+  justify-content: center;
+  height: 500px;
+  left: 35%;
+  max-height: 100vh;
+  max-width: 100vw;
+  position: fixed;
+  top: 20%;
+  width: 600px;
+  z-index: 999;
+}
+
+.contact-modal input,
+.contact-modal textarea {
+  background-color: #222222;
+  border: 1px solid #9085d5;
+  color: #fcfffd;
+  font-size: 14px;
+  margin-bottom: 20px;
+  padding: 0.8rem 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-modal input {
+  font-family: "sourcecodepro";
+  height: 5px;
+  width: 220px;
+}
+
+.contact-modal input::placeholder,
+.contact-modal textarea::placeholder {
+  color: gray;
+}
+
+.disclaimer-top {
+  color: #fcfffd;
+  font-size: 14px;
+  margin-top: 1rem;
+  opacity: 0.75;
+  text-align: center;
+}
+
+form {
+  height: 400px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.form-content {
+  background: #222222;
+  color: #fcfffd;
+  max-width: 600px;
+  padding: 2rem;
+  width: 100%;
+}
+
+.form-disclaimer {
+  color: gray;
+  font-size: 10px;
+  font-style: italic;
+  opacity: 0.75;
+  text-align: center;
+}
+
+.form-header {
+  color: rgba(197, 255, 71, 0.5);
+}
+
+.hidden {
+  display: none;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 0.3rem;
+}
+
+.input-group label {
+  color: gray;
+  font-size: 14px;
+  left: 10px;
+  pointer-events: none;
+  position: absolute;
+  top: 0.3rem;
+  transition: all 0.2s ease;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  background-color: #222222;
+  color: #fcfffd;
+  font-size: 14px;
+  left: 0.8rem;
+  opacity: 0;
+  padding: 0 0.25rem;
+  top: -0.6rem;
+  transform: translateY(-10px);
+  visibility: hidden;
+}
+
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.message-group textarea {
+  height: 100px;
+}
+
+.modal-input {
+  background: transparent;
+  border: 1px solid #9085d5;
+  font-family: "sourcecodepro";
+}
+
+.modal-btn {
+  border: 1px solid #c5ff47;
+  font-family: "sourcecodepro";
+  margin: 0;
+  width: 100%;
+}
+
+.modal-btn:hover {
+  background-color: #1a1a1a;
+  border: 2px solid black;
+  font-weight: 600;
+}
+
+.title-group input,
+.message-group textarea {
+  box-sizing: border-box;
+  font-family: "sourcecodepro";
+  width: 100%;
+}

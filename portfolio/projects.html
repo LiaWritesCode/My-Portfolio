@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>L I Λ ๋࣭ ⭑</title>
+    <link rel="icon" href="assets/favicon.ico?v=2" type="image/x-icon" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="assets/dev-logo.svg?v=2" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="project-page">
+    <!-- SIGIL CONTAINER -->
+    <div class="sigil-container">
+      <a href="/#" class="sigil-link">
+        <img src="assets/images/sigil.png" class="sigil" />
+      </a>
+    </div>
+    <div class="site-content">
+      <header>
+        <nav>
+          <div class="nav-container">
+            <div class="logo">
+              <img
+                src="assets/images/lia-logo.png"
+                alt="Lia's Logo, a personal sigil that combines a partiality of Saturn's logo and geometrical shapes"
+              />
+            </div>
+            <ul class="nav-links">
+              <li><span class="vesta">⚶</span><a href="#home" class="active">home</a></li>
+              <li><span class="vesta">⚶</span><a href="#portfolio">portfolio</a></li>
+              <li><span class="vesta">⚶</span><a href="#about">about-me</a></li>
+              <li>
+                <span class="vesta">⚶</span
+                ><a href="#contact" class="contact-trigger">contact-me</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <!-- BEGINNING OF PROJECTS PAGE -->
+      <div class="quote-projects">
+        <section id="inspiration-quote">
+          <blockquote class="insp-quote">
+            <img src="assets/images/quote-mark.png" class="quote-mark left" />
+            <p id="projects-quote">
+              “He who fights with monsters should be careful lest he thereby become a
+              monster. And if you gaze long into an abyss, the abyss also gazes into you.”
+            </p>
+            <img src="assets/images/quote-mark.png" class="quote-mark right" />
+            <footer class="quote-author">
+              — Nietzsche debugging for 3 hours straight
+            </footer>
+          </blockquote>
+        </section>
+      </div>
+
+      <div class="section-title">
+        <span class="vesta" aria-hidden="true">⚶</span>
+        <h2 class="section-text">portfolio</h2>
+        <span class="section-divider" aria-hidden="true"></span>
+      </div>
+
+      <div id="projects-intro">
+        <p>
+          Welcome to my portfolio! Feel free to peruse the project cards for each project
+          I've worked on or am currently working on. Please note that these are updated as
+          often as possible and may not reflect the real amount of projects I've worked on
+          if some required privacy or anonymity. Hover over each project to get more
+          information on it. If you see only the name of the project and the programming
+          languages, frameworks, etc. used, click on it. This should expand the card to
+          give you the full information needed.
+        </p>
+      </div>
+
+      <div id="project-overlay">
+        <div class="overlay-content">
+          <button class="close-overlay">×</button>
+          <div class="project-details"></div>
+        </div>
+      </div>
+
+      <div class="projects-wrapper">
+        <div class="project-card" data-project="discord-bot-humphrey">
+          <img src="assets/images/humphrey-project.png" class="project-img" />
+          <div class="caption">
+            <h2>Humphrey: Discord Bot</h2>
+            JavaScript / Discord.js / Node.js
+          </div>
+        </div>
+
+        <div class="project-card" data-project="discord-bot-penumbra">
+          <img src="assets/images/penumbra-project.png" class="project-img" />
+          <div class="caption">
+            <h2>Penumbra: Discord Bot</h2>
+            JavaScript / Discord.js / Node.js
+          </div>
+        </div>
+
+        <div id="project-card">
+          <img src="assets/images/redacted-project.png" class="project-img" />
+          <div class="caption">
+            <h2>[REDACTED]</h2>
+            No information available, but a threshold breathes, whispering from somewhere
+            within this website.
+          </div>
+        </div>
+      </div>
+
+      <section id="contact">
+        <div class="section-head">
+          <div class="section-title">
+            <span class="vesta" aria-hidden="true">⚶</span>
+            <h2 class="section-text">contact-me</h2>
+            <span class="section-divider" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="contact-content">
+          <p>
+            Currently open to aligned opportunities where thoughtful structure, intent,
+            and technical clarity pave the way. If that is how you build, I'd be honored
+            to chat.
+          </p>
+          <div class="contact-box">
+            <h3 class="contact-label">message me here!</h3>
+            <img
+              src="assets/images/discord.png"
+              alt="Discord Logo"
+              class="contact-icon"
+            /><span class="discord">everseer.exe</span><br />
+            <img
+              src="assets/images/email.png"
+              alt="Email icon"
+              class="contact-icon"
+            /><span class="email">liaramos.dev@proton.me</span>
+          </div>
+        </div>
+      </section>
+      <!-- CONTACT FORM MODAL -->
+      <div id="contact-modal" class="contact-modal hidden">
+        <div class="form-content">
+          <form id="modal">
+            <span class="close-button">&times;</span>
+            <h2 class="form-header">Contact Lia ☆</h2>
+            <div class="input-row">
+              <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required placeholder=" " />
+              </div>
+              <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required placeholder=" " />
+              </div>
+            </div>
+            <div class="input-group title-group">
+              <label for="title">Title</label>
+              <input type="text" name="title" id="title" required placeholder=" " /><br />
+            </div>
+            <div class="input-group message-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required placeholder=" "></textarea>
+            </div>
+            <button type="submit" class="modal-btn">Send</button><br /><br />
+
+            <div class="disclaimer-top">☆.𓋼𓍊 𓆏 𓍊𓋼𓍊.☆</div>
+            <p class="form-disclaimer">
+              👁 No archives here. What you send stays between us. Pinky promise.
+            </p>
+          </form>
+        </div>
+      </div>
+      <footer>
+        <div class="footer-main">
+          <img src="assets/images/lia-logo.png" class="footer-logo" />
+          <div class="footer-info">
+            <p class="footer-title">Full-Stack Software Developer</p>
+            <p class="footer-text">liaramos.dev@proton.me</p>
+          </div>
+        </div>
+        <p class="copyright">© 2025 Lia Ramos | All rituals reserved</p>
+      </footer>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,533 @@
+@font-face {
+  font-family: "OpenRing";
+  src: url("assets/fonts/OpenRing-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#veil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.95) 60%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 1s ease-in-out;
+}
+
+/* pulse */
+.threshold-container.pulsing {
+  animation: pulseCollapse 0.6s ease-in-out forwards;
+}
+
+@keyframes pulseCollapse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.98);
+  }
+}
+
+/* fade in content */
+.redacted-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  transition: opacity 2s ease-in-out;
+}
+.redacted-container.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body {
+  background-color: #16171d;
+  font-family: "Fira Code", monospace;
+  position: relative;
+  overflow: hidden;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+/* THRESHOLD CONSOLE PAGE SHIT BECAUSE I STARTED LEARNING HOW TO LABEL EVERYTHING */
+
+body::before {
+  content: " ";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/images/threshold-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  z-index: -1;
+  transition: opacity 1s ease-in-out;
+}
+
+body.fade-bg::before {
+  opacity: 0;
+}
+
+.threshold-container {
+  background-color: #16171d;
+  opacity: 0.9;
+  border: 2px solid #000;
+  border-radius: 26px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 1);
+  height: 632px;
+  width: 1015px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 1s ease-in-out;
+}
+
+.console-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px 5px 20px;
+}
+
+.console-header {
+  font-size: 18px;
+  font-weight: 400;
+  color: #dcdde5;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+.close-btn {
+  font-size: 20px;
+  color: #dcdde5;
+  cursor: pointer;
+  padding-left: 20px;
+}
+
+.threshold-divider {
+  height: 1px;
+  background-color: #000;
+}
+
+.binary {
+  color: #dcdde5;
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.welcome-text {
+  color: #dcdde5;
+  font-size: 16px;
+  padding-left: 30px;
+  text-align: left;
+}
+
+.highlight {
+  color: #46bdf0;
+}
+
+.hidden {
+  display: none;
+}
+
+.boot-container {
+  color: #dcdde5;
+  font-size: 16px;
+  line-height: 0.5;
+  height: 320px;
+  overflow: hidden;
+  padding-left: 30px;
+  padding-top: 10px;
+  top: 100px;
+  text-align: left;
+}
+
+.cleared {
+  color: #c2d29d;
+}
+
+.caution {
+  color: #eb6d6d;
+}
+
+.terminal-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  color: #dcdde5;
+  padding: 20px 20px 20px 20px;
+  margin: 50px 20px 20px 20px;
+}
+
+.terminal-row {
+  display: flex;
+  align-items: center;
+  font-family: "Fira Code", monospace;
+  font-size: 16px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.blinking-cursor {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  width: 1ch;
+  height: 20px;
+  display: inline-block;
+  animation: blink 1s step-start infinite;
+  pointer-events: none;
+  font-size: 16px;
+  line-height: 1em;
+  transition: background 0.2s, border 0.2s;
+}
+
+#user-command {
+  caret-color: transparent;
+  display: inline-block;
+  min-width: 1ch;
+  line-height: 1em;
+  vertical-align: baseline;
+  outline: none;
+  color: #dcdde5;
+  font-size: 16px;
+  white-space: nowrap;
+  padding-left: 8px;
+}
+
+#user-command.focused + .blinking-cursor {
+  /* solid block upon focus */
+  animation: blink 1s step-start infinite;
+  background: #dcdde5;
+  border: none;
+}
+
+#user-command:not(.focused) + .blinking-cursor {
+  /* hollow block upon not focused to mimic vsc */
+  background: transparent;
+  border: 1px solid #dcdde5;
+  animation: none;
+}
+
+/* CONSOLE MODAL WINDOW FOR THE CLOSE BUTTON */
+.modal {
+  position: fixed;
+  top: 80px;
+  left: 380px;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: #16171d;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 1);
+  padding: 24px;
+  border-radius: 8px;
+  color: #dcdde5;
+  text-align: center;
+}
+
+.modal-actions button {
+  font-family: "Fira Code", monospace;
+  margin: 6px;
+  padding: 8px 16px;
+  background: rgba(69, 94, 88, 0.6);
+  border-radius: 8px;
+  color: #dcdde5;
+  border: none;
+  cursor: pointer;
+}
+
+/* MAIN THRESHOLD CONTENT FOR SLIDES */
+
+/* slides */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  cursor: default;
+  font-size: 70px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 2.5s ease-in-out, filter 2.5s ease-in-out;
+  filter: blur(10px);
+}
+
+.slide p {
+  color: #dcdde5;
+  font-family: "OpenRing";
+  padding: 0;
+}
+
+.slide.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.slide.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  filter: blur(0);
+}
+
+.slide.dissolving {
+  opacity: 0;
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+/* initial button to trigger slideshow */
+
+.redacted-btn {
+  position: relative;
+  background: #111114;
+  font-family: "Lora";
+  font-size: 20px;
+  border: 3px solid #000;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  color: #79a7ba;
+  top: 0;
+  margin: 0;
+  padding: 5px 30px;
+}
+
+.redacted-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    #79a7ba 30%,
+    #c2d29d 50%,
+    #a494b8 70%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.redacted-btn:hover::before {
+  opacity: 0.4;
+  animation: shimmerFlowLTR 4s linear infinite;
+}
+
+/* junq quote sigil */
+.redacted-sigil img {
+  margin-top: -60px;
+}
+
+/* final slide img and buttons */
+.sigil-container {
+  position: relative;
+  display: inline-block;
+  max-width: 300px;
+}
+
+.sigil-container img {
+  width: 100%;
+  height: auto;
+  image-rendering: auto;
+  filter: drop-shadow(0 0 30px rgba(121, 167, 186, 0.6));
+  margin-bottom: 30px;
+  transition: filter 0.3s ease;
+}
+
+.sigil-container img:hover {
+  filter: drop-shadow(0 0 40px rgba(121, 167, 186, 1.2));
+  transform: scale(1.03);
+}
+
+.back-btn {
+  position: relative;
+  background-color: #111114;
+  font-family: "Lora";
+  font-size: 20px;
+  border: 3px solid #000;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  color: #c2d29d;
+  top: 0;
+  margin: 0;
+  padding: 5px 30px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.back-btn,
+#replay-btn {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.back-btn.visible,
+#replay-btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    #79a7ba 30%,
+    #c2d29d 50%,
+    #a494b8 70%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.back-btn:hover::before {
+  opacity: 0.4;
+  animation: shimmerFlowLTR 4s linear infinite;
+}
+
+@keyframes shimmerFlowLTR {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+#replay-btn {
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+#replay-btn:hover {
+  filter: drop-shadow(0 0 5px rgba(164, 148, 184, 1));
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+#replay-btn:hover {
+  opacity: 1;
+}
+
+/* PROGRESS TRACKER FOR SLIDESHOW */
+
+#constellation-tracker {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  gap: 12px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#constellation-tracker.visible {
+  opacity: 1;
+}
+
+.star {
+  font-size: 24px;
+  color: #dcdde5;
+  opacity: 0.4;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.star.active {
+  opacity: 1;
+  transform: scale(2);
+  color: #c2d29d;
+  text-shadow: 0 0 8px #dcdde5;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.star.past {
+  opacity: 0.2;
+  color: #a494b8;
+}
+
+.star.future {
+  opacity: 0.4;
+}
