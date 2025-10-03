@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // -------------- SECRET SIGIL --------------
 
   const sigil = document.querySelector(".sigil-container");
-  const batCursor = 'url("/assets/bat.cur"), auto';
+  const batCursor = 'url("assets/bat.cur"), auto';
 
   document.addEventListener("mousemove", (e) => {
     const sigilRect = sigil.getBoundingClientRect();
