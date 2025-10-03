@@ -561,7 +561,6 @@ p {
 /* ---------------> SIGIL <--------------- */
 
 .sigil {
-  cursor: auto;
   opacity: 0.2;
   transition: filter 0.4s ease-in-out;
 }
