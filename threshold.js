@@ -179,30 +179,22 @@ document.addEventListener("DOMContentLoaded", () => {
     userCommand.classList.remove("focused");
   });
 
+  userCommand.addEventListener("click", updateCursorVisibility);
+
+  function updateCursorVisibility() {
+  const isEmpty = userCommand.textContent.trim() === "";
+  cursor.style.display = isEmpty ? "block" : "none";
+}
+
   userCommand.focus();
+  updateCursorVisibility();
 
-  const observer = new MutationObserver(() => {
-    const isEmpty = userCommand.textContent.trim() === "";
-    cursor.style.display = isEmpty ? "block" : "none";
-  });
-
-  observer.observe(userCommand, {
-    // THE WATCHMEN OBSERVE >_>
-    childList: true,
-    characterData: true,
-    subtree: true,
-  });
-
-  userCommand.addEventListener("focus", () => {
-    // FOCUS
-    const isEmpty = userCommand.textContent.trim() === "";
-    cursor.style.display = isEmpty ? "block" : "none";
-  });
-
-  userCommand.addEventListener("click", () => {
-    const isEmpty = userCommand.textContent.trim() === "";
-    cursor.style.display = isEmpty ? "block" : "none";
-  });
+  const observer = new MutationObserver(updateCursorVisibility);
+observer.observe(userCommand, {
+  childList: true,
+  characterData: true,
+  subtree: true,
+});
 
   // THE CLOSE BUTTON FOR THE CONSOLE PAGE TO BRING USER BACK TO THE PORTFOLIO ~
   const closeBtn = document.getElementById("console-close");
@@ -282,8 +274,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const finalBtn = finalSlide.querySelector(".back-btn");
     const replayIcon = finalSlide.querySelector("#replay-btn");
 
-    finalBtn.classList.add("fading");
-    replayBtn.classList.add("fading");
 
     finalBtn.style.opacity = "0";
     finalBtn.style.pointerEvents = "none";
@@ -388,9 +378,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       return;
     }
-
-    // stops on final slide to avoid looping
-    if (index === slides.length - 1) return;
 
     setTimeout(() => {
       slide.classList.add("dissolving");
