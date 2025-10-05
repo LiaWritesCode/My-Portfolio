@@ -1353,16 +1353,16 @@ form {
 }
 
 .input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
-  background-color: #222222;
-  color: #fcfffd;
-  font-size: 14px;
-  left: 0.8rem;
-  opacity: 0;
-  padding: 0 0.25rem;
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label {
   top: -0.6rem;
+  left: 0.5rem;
+  font-size: 0.8rem;
+  color: #fcfffd;
+  background-color: #222222;
+  padding: 0 0.25rem;
   transform: translateY(-10px);
-  visibility: hidden;
 }
 
 .input-row {
