@@ -128,6 +128,19 @@ let titleIntervalStarted = false;
 
 const switchTitle = document.getElementById("nameTitle");
 
+function fadeOut(element, callback) {
+  element.style.opacity = 0;
+  requestAnimationFrame(() => {
+    setTimeout(callback, 500); // matches CSS transition
+  });
+}
+
+function fadeIn(element) {
+  requestAnimationFrame(() => {
+    element.style.opacity = 1;
+  });
+}
+
 function startTitleSwitcher() {
   if (titleIntervalStarted || !switchTitle) return;
   titleIntervalStarted = true;
@@ -135,9 +148,7 @@ function startTitleSwitcher() {
   switchTitle.textContent = titles[current];
 
   setInterval(() => {
-    switchTitle.style.opacity = 0;
-
-    setTimeout(() => {
+    fadeOut(switchTitle, () => {
       let next;
       do {
         next = Math.floor(Math.random() * titles.length);
@@ -147,8 +158,8 @@ function startTitleSwitcher() {
       previous = current;
 
       switchTitle.textContent = titles[current];
-      switchTitle.style.opacity = 1;
-    }, 500);
+      fadeIn(switchTitle);
+    });
   }, 3000);
 }
 
