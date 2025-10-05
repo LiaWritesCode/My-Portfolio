@@ -111,8 +111,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const label = input.previousElementSibling;
         label.style.display = "inline";
       });
+    });
+  }
 
-const titles = [
+  // TITLE SWITCHES IN ABOUT ME
+  const titles = [
   "Software Developer",
   "Code Cartographer",
   "Digital Mystic",
@@ -164,9 +167,6 @@ function startTitleSwitcher() {
 }
 
 startTitleSwitcher();
-
-    });
-  }
 
   // PROJECT CARDS THAT HAVE EVENT LISTENERS FOR README TYPE INFORMATION
   if (document.body.classList.contains("project-page")) {
