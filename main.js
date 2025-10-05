@@ -211,7 +211,7 @@ startTitleSwitcher();
           <div class="readme-row"><p class="code-details">JavaScript / Discord.js / Node.js</p>
           <div class="status-block"><div class="status-text"><p><span class="readme-highlight">Status:</span> Work in progress</p>
           </div></div></div></div>
-          <p>Insert README information here</p>
+          <p>Information on this bot is still in the works as it is more complex than a pomodoro bot. Please check back at a later time :)</p>
           `;
       }
       return `
