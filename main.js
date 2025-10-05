@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --------------  CONSTELLATION ANIMATIONS || ABOUT PAGE  --------------
 
-  if (
+  if ( // CONTACT MODAL
   document.body.classList.contains("about-page") ||
   document.body.classList.contains("project-page") ||
   document.body.classList.contains("landing-page")
@@ -112,42 +112,48 @@ document.addEventListener("DOMContentLoaded", () => {
         label.style.display = "inline";
       });
 
-      const titles = [
-        "Software Developer",
-        "Code Cartographer",
-        "Digital Mystic",
-        "Ritual Architect",
-        "Interface Alchemist",
-        "Chaos-Coded Developer",
-        "Debug Strategist",
-      ];
-      let current = 0;
-      const switchTitle = document.getElementById("nameTitle");
+const titles = [
+  "Software Developer",
+  "Code Cartographer",
+  "Digital Mystic",
+  "Ritual Architect",
+  "Interface Alchemist",
+  "Chaos-Coded Developer",
+  "Debug Strategist",
+];
 
-      if (switchTitle) {
-        switchTitle.textContent = titles[current];
+let current = 0;
+let previous = current;
+let titleIntervalStarted = false;
 
-        let previous = current;
+const switchTitle = document.getElementById("nameTitle");
 
-        setInterval(() => {
-          switchTitle.style.opacity = 0;
+function startTitleSwitcher() {
+  if (titleIntervalStarted || !switchTitle) return;
+  titleIntervalStarted = true;
 
-          setTimeout(() => {
-            let next;
-            do {
-              next = Math.floor(Math.random() * titles.length);
-            } while (next === previous);
+  switchTitle.textContent = titles[current];
 
-            current = next;
-            previous = current;
+  setInterval(() => {
+    switchTitle.style.opacity = 0;
 
-            switchTitle.textContent = titles[current];
-            switchTitle.style.opacity = 1;
-          }, 500);
-        }, 3000);
-      } else {
-        console.warn("Title element not found.");
-      }
+    setTimeout(() => {
+      let next;
+      do {
+        next = Math.floor(Math.random() * titles.length);
+      } while (next === previous);
+
+      current = next;
+      previous = current;
+
+      switchTitle.textContent = titles[current];
+      switchTitle.style.opacity = 1;
+    }, 500);
+  }, 3000);
+}
+
+startTitleSwitcher();
+
     });
   }
 
