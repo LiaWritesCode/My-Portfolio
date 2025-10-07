@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  // HOVER EFFECT FOR LANDING PAGE CONTACT BUTTON 
+  const button = document.getElementById("contact-btn");
+
+  button.addEventListener("mouseenter", () => {
+    button.classList.add("hovered");
+  });
+
+  button.addEventListener("mouseleave", () => {
+    button.classList.remove("hovered");
+  });
+
   // -------------- SECRET SIGIL --------------
 
   const sigil = document.querySelector(".sigil-container");
@@ -21,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.cursor = "auto";
     }
   });
+
 
   // --------------  CONSTELLATION ANIMATIONS || ABOUT PAGE  --------------
 
@@ -256,7 +269,7 @@ startTitleSwitcher();
   }
 
   // -------------- SVG ORION STAR INFORMATION AND BEHAVIOR --------------
-  if (document.body.classList.contains("about-page")) {
+  if (document.body.classList.contains("landing-page")) {
     const hoverBox = document.getElementById("hover-box");
     const hoverTitle = document.getElementById("star-title");
     const hoverSummary = document.getElementById("star-summary");
@@ -269,7 +282,7 @@ startTitleSwitcher();
       betelgeuse: { title: "betelgeuse", summary: "Soft Skills" },
       alnilam: { title: "alnilam", summary: "Curiosity and Learning" },
       mintaka: { title: "mintaka", summary: "Quirks and Curiosities" },
-      alnitak: { title: "alnitak", summary: "Personal Crafts" },
+      alnitak: { title: "alnitak", summary: "General About Me" },
     };
 
     document
@@ -396,14 +409,18 @@ startTitleSwitcher();
   </div>
   `,
 
-      alnitak: `<h2 class="info-head"> >> Personal Craft</h2>
-  <p class="info-text">Alnitak is the closest to the Horsehead Nebula which is a region where stars are birthed. It was the perfect pick to depict my personal projects, writing, and anything else creative.</p>
-  <ul>
-  <li>Currently working on a personal app project that may or may not be hinted at in some way on this website</li>
-  <li>Have plans to write another book!</li>
-  <li>Creating a separate website as an archive to all my writing except for the novels I wrote</li>
-  <li>Pursuing cybersecurity knowledge to strengthen privacy architecture and protect future projects</li>
-  </ul>
+      alnitak: `<h2 class="info-head"> >> About Me</h2>
+  <p class="info-text">Alnitak is the closest to the Horsehead Nebula which is a region where stars are birthed. It was the perfect pick to give you some general information about me.</p>
+ <p>------------------------------------------<br><br>
+ I am a self-taught software engineer/developer located in New Jersey, USA. I
+            am learning to develop websites and software applications from scratch in an
+            effort to provide unique user-friendly experiences.<br /><br />
+
+            Writing has always been a passion of mine but by entwining my love for
+            literature and the dopamine I got from manipulating HTML and CSS through
+            MySpace and Blogger, I am attempting to turn my hobbies into a passionate
+            career. I know I do not know everything, so I will always be striving to learn
+            more.</p>
   `,
     };
 
@@ -553,34 +570,5 @@ startTitleSwitcher();
     shuffleStars();
     beginTwinkling();
   }
-  // --------------  IMAGE CAROUSEL ANIMATION  --------------
-  if (document.body.classList.contains("landing-page")) {
-    const carousel = document.querySelector(".carousel");
-    const items = document.querySelectorAll(".carousel-item");
-    const leftArrow = document.querySelector(".arrow.left");
-    const rightArrow = document.querySelector(".arrow.right");
-
-    let currentIndex = 0;
-
-    function updateCarousel() {
-      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-
-    leftArrow.addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + items.length) % items.length;
-      updateCarousel();
-    });
-
-    rightArrow.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % items.length;
-      updateCarousel();
-    });
-
-    updateCarousel();
-
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % items.length;
-      updateCarousel();
-    }, 5000);
-  }
+  
 });

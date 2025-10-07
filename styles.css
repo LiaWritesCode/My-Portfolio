@@ -17,22 +17,6 @@ body {
   padding: 0;
 }
 
-button {
-  align-items: center;
-  background-color: #222222;
-  border: 1px solid #9085d5;
-  color: #fcfffd;
-  font-family: "sourcecodepro";
-  margin-top: 20px;
-  padding: 10px;
-}
-
-button:hover {
-  background-color: #1a1a1a;
-  border-color: black;
-  color: #c5ff47;
-}
-
 header {
   background-color: #222222;
   position: sticky;
@@ -65,26 +49,59 @@ p {
 
 /* ---------------> HERO <--------------- */
 
-.contact-btn {
+@keyframes pulseShadow {
+  0% {
+    box-shadow: 0 0 6px rgba(144, 133, 213, 0.4),
+                0 0 12px rgba(144, 133, 213, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(144, 133, 213, 0.8),
+                0 0 40px rgba(144, 133, 213, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 6px rgba(144, 133, 213, 0.4),
+                0 0 12px rgba(144, 133, 213, 0.2);
+  }
+}
+
+#contact-btn {
+  position: relative;
   align-items: center;
-  background-color: #222222;
+  background-color: #1a1a1a;
   border: 1px solid #9085d5;
-  color: #fcfffd;
+  transition: box-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
+  color: rgba(197, 255, 71, 0.8);
   font-family: "sourcecodepro";
   margin-top: 20px;
   padding: 10px;
+  animation: pulseShadow 4s infinite ease-in-out;
+  z-index: 1;
 }
 
-.contact-btn:hover {
+#contact-btn.hovered::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  box-shadow: 0 0 12px rgba(197, 255, 71, 1),
+              0 0 24px rgba(197, 255, 71, 0.6);
+}
+
+#contact-btn.hovered {
   background-color: #1a1a1a;
-  border-color: black;
+  border-color: #000;
+  box-shadow: 0 0 12px rgba(197, 255, 71, 1),
+              0 0 24px rgba(197, 255, 71, 0.6);
   color: #c5ff47;
 }
 
 .hero-container {
   align-items: flex-start;
   display: flex;
-  gap: 40px;
+  gap: 30px;
   justify-content: space-between;
   padding: 40px 20px;
 }
@@ -108,7 +125,8 @@ p {
 
 .hero-message {
   flex: 1;
-  max-width: 600px;
+  padding-left: 30px;
+  max-width: 650px;
 }
 
 .hero-right {
@@ -154,7 +172,7 @@ p {
 
 .image-wrapper img[alt="Lia's profile picture"] {
   display: block;
-  height: auto;
+  height: 400px;
   max-width: 100%;
   position: relative;
   z-index: 2;
@@ -165,7 +183,7 @@ p {
   opacity: 0.7;
   position: absolute;
   top: 10px;
-  z-index: 1;
+  z-index: 10;
 }
 
 .status-box {
@@ -175,8 +193,9 @@ p {
   display: flex;
   font-size: 14px;
   gap: 10px;
-  left: -43px;
+  left: -25px;
   padding-left: 10px;
+  margin-bottom: -50px;
   position: relative;
   text-align: center;
   top: -10px;
@@ -197,7 +216,7 @@ p {
 }
 
 .vesta-hero {
-  bottom: -30px;
+  bottom: 10px;
   color: #c5ff47;
   font-family: "sourcecodepro";
   font-size: 100px;
@@ -292,7 +311,7 @@ p {
   opacity: 1;
 }
 
-/* Overlay Customization for Projects */
+/* ---------------> OVERLAY FOR PROJECTS ON PORTFOLIO PAGE <--------------- */
 .card-header {
   font-family: "sourcecodepro", monospace;
   color: #c5ff47;
@@ -354,9 +373,6 @@ p {
   font-size: 15px;
   line-height: 1.5;
 }
-
-
-
 
 .project-img {
   border-radius: 20px;
@@ -462,6 +478,7 @@ p {
   display: flex;
   flex-direction: column;
   margin: 4rem 0;
+  padding-bottom: 40px;
   position: relative;
 }
 
@@ -558,7 +575,7 @@ p {
   gap: 16px;
 }
 
-/* ---------------> SIGIL <--------------- */
+/* ---------------> SIGIL FOR THRESHOLD <--------------- */
 
 .sigil {
   opacity: 0.2;
@@ -583,196 +600,57 @@ p {
   text-decoration: none;
 }
 
-/* ---------------> PROJECTS CAROUSEL <--------------- */
-
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-.see-more-link {
-  color: #c0bbe7;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.see-more-link:hover {
-  color: #c5ff47;
-}
-
-.arrow {
-  background: none;
-  border: none;
-  color: #c5ff47;
-  cursor: pointer;
-  font-size: 2rem;
-  z-index: 3;
-}
-
-.caption-box {
-  background-color: rgba(0, 0, 0, 0.6);
-  bottom: 0;
-  color: #fcfffd;
-  display: flex;
-  font-size: 14px;
-  height: 20px;
-  left: 0;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  position: relative;
-  right: 0;
-  z-index: 2;
-}
-
-.caption-box::after {
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    transparent 100%
-  );
-  content: " ";
-  height: 100%;
-  left: -100%;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  transform: skewX(-20deg);
-  transition: opacity 0.3s ease;
-  width: 100%;
-}
-
-.caption-box:hover::after {
-  animation: shimmer 1.5s ease-in-out forwards;
-  opacity: 1;
-}
-
-.carousel {
-  display: flex;
-  height: 100%;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  transition: transform 0.5s ease;
-  width: 100%;
-}
-
-.carousel-container {
-  align-items: center;
-  display: flex;
-  height: 500px;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 100%;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
-.carousel-item {
-  flex: 0 0 100%;
-  height: 100%;
-  position: relative;
-  width: 100%;
-}
-
-.carousel-item img {
-  display: block;
-  height: calc(100% - 50px);
-  object-fit: cover;
-  width: 100%;
-}
-
-.carousel-track {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  transition: transform 0.5s ease;
-  width: 100%;
-}
-
-.carousel-track,
-.carousel {
-  height: 100%;
-}
-
-.image-box {
-  box-sizing: border-box;
-  height: 100%;
-  position: relative;
-  width: 100%;
-  z-index: 1;
-}
-
-.project-title {
-  color: #c5ff47;
-  font-family: "sourcecodepro";
-  font-weight: 400;
-}
-
-.tech-stack {
-  color: rgb(185, 185, 185);
-  font-family: "sourcecodepro";
-}
-
 /* ---------------> ABOUT LANDING PAGE <--------------- */
 
+
+html {
+  scroll-behavior: smooth;
+}
+
 .about-container {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
-  justify-content: space-between;
-  margin: 0;
-  padding-left: 20px;
-}
-
-.about-image-wrapper {
-  align-items: flex-end;
-  display: flex;
-  flex: 1 1 300px;
   flex-direction: column;
-  left: -50px;
-  position: relative;
-  width: fit-content;
+  justify-content: center;
+  margin: 0 auto 40px auto;
+  text-align: center;
 }
 
-.about-image-wrapper img {
-  display: block;
-  height: auto;
-  position: relative;
-  z-index: 1;
+.about-name-block {
+display: flex;
+flex-direction: column;
+align-items: center;
+max-width: 100%;
 }
 
-.about-text p {
-  text-align: justify;
-  font-family: "Lora", serif;
-  font-size: 16px;
-  line-height: 1.75;
-  max-width: 700px;
-}
-
-.mercury-about,
-.saturn-about {
-  color: #9085d5;
+#nameTitle {
+  display: inline-block;
+  color: #c5ff47;
   font-family: "sourcecodepro";
-  font-size: 100px;
-  position: absolute;
-  z-index: 2;
+  font-size: 20px;
+  opacity: 1;
+  padding: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.mercury-about {
-  bottom: -10px;
-  left: 150px;
+.fade {
+  transition: opacity 0.5s ease-in-out;
 }
 
-.saturn-about {
-  right: 10px;
-  top: -15px;
+.title-wrapper {
+  align-self: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -15px;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.fade-in {
+  opacity: 1;
 }
 
 /* ---------------> CONTACT LANDING PAGE <--------------- */
@@ -880,101 +758,6 @@ footer {
   margin: 0;
 }
 
-/* ---------------> ABOUT-ME PAGE CSS <--------------- */
-
-.about-divider-span {
-  background-color: var(--divider-color, #9085d5);
-  display: block;
-  flex-grow: 1;
-  height: 1.2px;
-  width: 600px;
-  margin-left: 1rem;
-}
-
-.about-header {
-  align-items: center;
-  display: flex;
-  gap: 1rem;
-  margin-top: 20px;
-  width: 100%;
-}
-
-.about-pfp {
-  height: 20%;
-  margin-bottom: 10px;
-  width: 20%;
-}
-
-.about-description p {
-  color: #fcfffd !important;
-  flex: 1;
-  font-family: "Lora", serif;
-  font-size: 16px;
-  line-height: 1.75;
-  margin-top: 60px;
-  max-width: 650px;
-  text-align: justify;
-}
-
-.picatrix {
-  color: #c5ff47;
-  font-size: 50px;
-  margin-right: -5px;
-  padding: 0;
-}
-
-#nameTitle {
-  color: #c5ff47;
-  font-family: "sourcecodepro";
-  font-size: 20px;
-  margin-bottom: -20px;
-  opacity: 1;
-  padding: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.fade {
-  transition: opacity 0.5s ease-in-out;
-}
-
-.fade-out {
-  opacity: 0;
-}
-
-.fade-in {
-  opacity: 1;
-}
-
-/* .quirks-head { // UNSURE IF I WANT TO KEEP OR REPLACE A DIFFERENT SECTION
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 2rem 0;
-} */
-
-.n-node {
-  color: #c5ff47;
-}
-
-.mercury-about-page,
-.saturn-about-page {
-  color: #9085d5;
-  font-family: "sourcecodepro";
-  font-size: 100px;
-  position: absolute;
-  z-index: 2;
-}
-
-.mercury-about-page {
-  bottom: -10px;
-  left: 20px;
-}
-
-.saturn-about-page {
-  right: 10px;
-  top: -15px;
-}
-
 /* ---------------> INTERACTIVE CONSTELLATION SVG && INFO <--------------- */
 
 @keyframes ripple {
@@ -1067,6 +850,22 @@ footer {
   font-size: 16px;
 }
 
+@media screen and (max-width: 768px) {
+  #info-box {
+    max-width: 90vw;
+    padding: 20px 10px;
+  }
+}
+
+.info-box-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 20px;
+  margin-right: 20px;
+  box-sizing: border-box;
+}
+
 #info-box {
   background: #1a1a1a;
   border: 1px solid #9085d5;
@@ -1074,9 +873,8 @@ footer {
   flex-shrink: 0;
   font-family: "sourcecodepro";
   height: 600px;
-  margin-left: auto;
-  margin-right: 50px;
   max-height: 600px;
+  margin: 0;
   padding: 20px;
   position: relative;
   scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
@@ -1162,15 +960,9 @@ footer {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: -50px;
+  margin-top: 40px;
+  margin-bottom: -20px;
   overflow: visible;
-}
-
-.skills-head {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 2rem 0;
 }
 
 .star {
@@ -1224,6 +1016,7 @@ footer {
   align-items: flex-start;
   display: flex;
   gap: 2rem;
+  margin-bottom: 100px;
   width: 100%;
   overflow: visible;
 }
