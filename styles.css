@@ -583,6 +583,19 @@ p {
   transition: filter 0.4s ease-in-out;
 }
 
+@media screen and (max-width: 768px) {
+  .sigil-container {
+    bottom: 20px;
+    right: 20px;
+    transform: scale(0.8); 
+    z-index: 9999; 
+  }
+
+   #info-box {
+    margin-bottom: 60px; 
+  }
+}
+
 .sigil-container {
   position: fixed;
   bottom: 400px;
@@ -705,6 +718,28 @@ max-width: 100%;
   vertical-align: middle;
 }
 
+#contact {
+  margin-bottom: -50px;
+}
+
+.socials-wrapper {
+  padding-left: 20px;
+}
+
+.socials-wrapper img {
+ margin-right: 10px;
+ transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.socials-wrapper img:hover {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 15px #c5ff47);
+}
+
+.socials-wrapper img.twitter-star:hover  {
+  filter: drop-shadow(0 0 15px #00acee);
+}
+
 /* ---------------> FOOTER MAIN <--------------- */
 
 .copyright {
@@ -803,6 +838,14 @@ footer {
   transform-origin: center;
 }
 
+@media screen and (max-width: 768px) {
+  .close-btn img {
+    margin-inline-start: 0;
+    margin-left: auto;
+    margin-right: 10px;
+  }
+}
+
 .close-btn img {
   display: block;
   filter: drop-shadow(0 0 6px #9085d5);
@@ -810,6 +853,24 @@ footer {
   margin-inline-start: 460px;
   padding-top: 0;
   width: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .constellation-container {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+   .constellation {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    overflow: visible;
+  }
 }
 
 .constellation {
@@ -851,10 +912,19 @@ footer {
   font-size: 16px;
 }
 
+
 @media screen and (max-width: 768px) {
   #info-box {
     max-width: 90vw;
     padding: 20px 10px;
+    height: auto;
+    max-height: none;
+    width: 100%;
+  }
+
+  .info-scroll-content {
+    max-height: none;
+    padding-right: 0;
   }
 }
 
@@ -902,6 +972,21 @@ footer {
 
 #info-box::-webkit-scrollbar-track {
   background: transparent;
+}
+
+@media screen and (max-width: 768px) {
+  .info-head {
+    font-size: 20px;
+  }
+
+  .instructions {
+    font-size: 16px;
+  }
+
+  #star-info p,
+  #star-summary {
+    font-size: 14px;
+  }
 }
 
 .info-head {
@@ -1013,6 +1098,25 @@ footer {
   transform-origin: center;
 }
 
+@media screen and (max-width: 768px) {
+  .svg-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow-x: hidden;
+  }
+
+  .svg-container svg {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto; 
+    display: block;
+  }
+}
+
 .svg-container {
   align-items: flex-start;
   display: flex;
@@ -1073,7 +1177,7 @@ footer {
 
 .contact-modal input,
 .contact-modal textarea {
-  background-color: #222222;
+  background-color: #1a1a1a;
   border: 1px solid #9085d5;
   color: #fcfffd;
   font-size: 14px;
@@ -1095,7 +1199,7 @@ footer {
 
 .disclaimer-top {
   color: #fcfffd;
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 1rem;
   opacity: 0.75;
   text-align: center;
@@ -1117,7 +1221,7 @@ form {
 
 .form-disclaimer {
   color: gray;
-  font-size: 10px;
+  font-size: 13px;
   font-style: italic;
   opacity: 0.75;
   text-align: center;
@@ -1143,7 +1247,12 @@ form {
   pointer-events: none;
   position: absolute;
   top: 0.3rem;
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease;
+}
+
+.input-group label.hidden-label {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .input-group input:focus + label,
@@ -1153,6 +1262,8 @@ form {
   top: -0.6rem;
   left: 0.5rem;
   font-size: 0.8rem;
+  opacity: 0;
+  visibility: hidden;
   color: #fcfffd;
   background-color: #222222;
   padding: 0 0.25rem;
@@ -1177,7 +1288,9 @@ form {
 }
 
 .modal-btn {
+  background-color: #1a1a1a;
   border: 1px solid #c5ff47;
+  color: #c5ff47;
   font-family: "sourcecodepro";
   margin: 0;
   width: 100%;

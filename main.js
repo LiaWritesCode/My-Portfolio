@@ -37,6 +37,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --------------  CONSTELLATION ANIMATIONS || ABOUT PAGE  --------------
 
+ document.querySelectorAll('.input-group input, .input-group textarea').forEach((field) => {
+    field.addEventListener('input', () => {
+      const label = field.parentElement.querySelector('label');
+      if (field.value.trim() !== '') {
+        label.classList.add('hidden-label');
+      } else {
+        label.classList.remove('hidden-label');
+      }
+    });
+  });
+
   if ( // CONTACT MODAL
   document.body.classList.contains("about-page") ||
   document.body.classList.contains("project-page") ||
@@ -190,7 +201,7 @@ startTitleSwitcher();
     function getProjectDetails(id) {
       if (id === "discord-bot-humphrey") {
         return `
-          <h2 class="card-header">Humphrey: Pomodoro Bot <img src="assets/images/github.png" class="github-project"></h2> 
+          <h2 class="card-header">Humphrey: Pomodoro Bot <a href="https://github.com/LiaWritesCode"><img src="assets/images/github.png" class="github-project"></a></h2> 
           <div class="card-divider"></div>
           <div class="readme-container">
           <div class="readme-row"><p class="code-details">JavaScript / Discord.js / Node.js</p>
