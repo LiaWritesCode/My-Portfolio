@@ -1,3 +1,328 @@
+/* ---------------> FOR SCALING PURPOSES ACROSS SCREEN SIZES <--------------- */
+
+@media screen and (min-width: 1281px) {
+  .hero-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .skills-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .svg-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #info-box {
+    width: 500px;
+    max-height: 600px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .site-content {
+    padding: 30px 20px;
+  }
+
+  .hero-header {
+    font-size: 28px;
+  }
+
+  .image-wrapper img[alt="Lia's profile picture"] {
+    height: 350px;
+  }
+
+  .status-box {
+    width: 280px;
+  }
+
+  #info-box {
+    max-width: 600px;
+  }
+
+   .projects-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    padding: 20px;
+  }
+
+  .project-card,
+  #project-card {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .caption h2 {
+    font-size: 16px;
+  }
+
+  #projects-intro {
+    padding: 0 20px;
+  }
+
+  
+}
+
+@media screen and (max-width: 1024px) {
+  .hero-container,
+  .skills-container,
+  .svg-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .image-wrapper {
+    left: 0;
+    align-items: center;
+  }
+
+  .status-box {
+    margin: 0 auto;
+    left: 0;
+  }
+
+  .info-box-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #info-box {
+    width: 90vw;
+    max-width: 500px;
+  }
+  
+  .projects-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .project-card,
+  #project-card {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  .overlay-content {
+    padding: 30px;
+  }
+
+  .quote-projects {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+  @media screen and (max-width: 768px) {
+  .sigil-container {
+    bottom: 20px;
+    right: 20px;
+    transform: scale(0.8); 
+    z-index: 9999; 
+  }
+
+  #info-box {
+    margin-bottom: 60px; 
+  }
+
+  .close-btn img {
+    margin-inline-start: 0;
+    margin-left: auto;
+    margin-right: 10px;
+  }
+
+  .constellation-container {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    overflow: visible;
+  }
+  
+  #info-box {
+    max-width: 90vw;
+    padding: 20px 10px;
+    height: auto;
+    max-height: none;
+    width: 100%;
+  }
+
+  .info-scroll-content {
+    max-height: none;
+    padding-right: 0;
+  }
+
+  .info-head {
+    font-size: 20px;
+  }
+
+  .instructions {
+    font-size: 16px;
+  }
+
+  #star-info p,
+  #star-summary {
+    font-size: 14px;
+  }
+
+  .svg-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow-x: hidden;
+  }
+
+  .svg-container svg {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto; 
+    display: block;
+  }
+
+  .hero-header {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .hero-message {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .image-stack {
+    width: 100%;
+    align-items: center;
+  }
+
+  .svg-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 20px;
+  }
+
+  .constellation {
+    width: 100%;
+    height: auto;
+  }
+
+  .contact-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .contact-content p {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .contact-box {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .caption {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .caption h2 {
+    font-size: 14px;
+  }
+
+  .project-img {
+    border-radius: 12px;
+  }
+
+  #projects-intro p {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+
+  .quote-projects {
+    padding: 20px;
+  }
+
+  .overlay-content {
+    padding: 20px;
+  }
+
+  #project-overlay {
+    padding: 0;
+  }
+
+  .overlay-content {
+    margin: 2rem auto;
+    padding: 20px;
+    max-width: 90vw;
+  }
+
+  
+}
+
+
+@media (max-width: 600px) {
+  .input-row {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-header {
+    font-size: 20px;
+  }
+
+  .status-box {
+    width: 90%;
+  }
+
+  #info-box {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .info-head {
+    font-size: 18px;
+  }
+
+  .instructions {
+    font-size: 14px;
+  }
+
+  #star-summary,
+  #star-info p {
+    font-size: 14px;
+  }
+
+  .project-card,
+  #project-card {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .caption h2 {
+    font-size: 12px;
+  }
+
+  .caption {
+    padding: 6px;
+  }
+
+  #projects-quote {
+    font-size: 20px;
+  }
+
+  .quote-author {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
 /* ---------------> LANDING PAGE & MAIN CSS <--------------- */
 
 @font-face {
@@ -583,19 +908,6 @@ p {
   transition: filter 0.4s ease-in-out;
 }
 
-@media screen and (max-width: 768px) {
-  .sigil-container {
-    bottom: 20px;
-    right: 20px;
-    transform: scale(0.8); 
-    z-index: 9999; 
-  }
-
-   #info-box {
-    margin-bottom: 60px; 
-  }
-}
-
 .sigil-container {
   position: fixed;
   bottom: 400px;
@@ -838,14 +1150,6 @@ footer {
   transform-origin: center;
 }
 
-@media screen and (max-width: 768px) {
-  .close-btn img {
-    margin-inline-start: 0;
-    margin-left: auto;
-    margin-right: 10px;
-  }
-}
-
 .close-btn img {
   display: block;
   filter: drop-shadow(0 0 6px #9085d5);
@@ -855,23 +1159,13 @@ footer {
   width: auto;
 }
 
-@media screen and (max-width: 768px) {
-  .constellation-container {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    overflow: visible;
-  }
-
-   .constellation {
+.constellation {
     width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
     overflow: visible;
   }
-}
 
 .constellation {
   flex-shrink: 0;
@@ -910,22 +1204,6 @@ footer {
   color: #fcfffd;
   font-family: "Lora", serif;
   font-size: 16px;
-}
-
-
-@media screen and (max-width: 768px) {
-  #info-box {
-    max-width: 90vw;
-    padding: 20px 10px;
-    height: auto;
-    max-height: none;
-    width: 100%;
-  }
-
-  .info-scroll-content {
-    max-height: none;
-    padding-right: 0;
-  }
 }
 
 .info-box-wrapper {
@@ -972,21 +1250,6 @@ footer {
 
 #info-box::-webkit-scrollbar-track {
   background: transparent;
-}
-
-@media screen and (max-width: 768px) {
-  .info-head {
-    font-size: 20px;
-  }
-
-  .instructions {
-    font-size: 16px;
-  }
-
-  #star-info p,
-  #star-summary {
-    font-size: 14px;
-  }
 }
 
 .info-head {
@@ -1098,25 +1361,6 @@ footer {
   transform-origin: center;
 }
 
-@media screen and (max-width: 768px) {
-  .svg-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-    overflow-x: hidden;
-  }
-
-  .svg-container svg {
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto; 
-    display: block;
-  }
-}
-
 .svg-container {
   align-items: flex-start;
   display: flex;
@@ -1140,12 +1384,6 @@ footer {
 }
 
 /* ---------------> CONTACT POP-UP CSS <--------------- */
-
-@media (max-width: 600px) {
-  .input-row {
-    flex-direction: column;
-  }
-}
 
 .close-button {
   cursor: pointer;
