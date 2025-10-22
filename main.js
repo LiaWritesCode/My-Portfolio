@@ -1,206 +1,148 @@
 document.addEventListener("DOMContentLoaded", () => {
+	// --------------  HAHMBERGER --------------
+	const hamburger = document.getElementById("hamburger");
+	const navLinks = document.querySelector(".nav-links");
 
-  // HOVER EFFECT FOR LANDING PAGE CONTACT BUTTON 
-  const button = document.getElementById("contact-btn");
+	hamburger.addEventListener("click", (e) => {
+		e.stopPropagation();
+		navLinks.classList.toggle("active");
+	});
 
-  button.addEventListener("mouseenter", () => {
-    button.classList.add("hovered");
-  });
+	document.addEventListener("click", (e) => {
+		if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+			navLinks.classList.remove("active");
+		}
+	});
 
-  button.addEventListener("mouseleave", () => {
-    button.classList.remove("hovered");
-  });
+	// --------------  CONTACT MODAL POP UP  --------------
 
-  // -------------- SECRET SIGIL --------------
+	document
+		.querySelectorAll(".input-group input, .input-group textarea")
+		.forEach((field) => {
+			field.addEventListener("input", () => {
+				const label = field.parentElement.querySelector("label");
+				if (field.value.trim() !== "") {
+					label.classList.add("hidden-label");
+				} else {
+					label.classList.remove("hidden-label");
+				}
+			});
+		});
 
-  const sigil = document.querySelector(".sigil-container");
-  const batCursor = 'url("assets/bat.cur"), auto';
+	if (
+		// CONTACT MODAL
+		document.body.classList.contains("about-page") ||
+		document.body.classList.contains("project-page") ||
+		document.body.classList.contains("landing-page")
+	) {
+		const modal = document.getElementById("contact-modal");
+		const closeButton = document.querySelector(".close-button");
+		const triggers = document.querySelectorAll(".contact-trigger");
 
-  document.addEventListener("mousemove", (e) => {
-    const sigilRect = sigil.getBoundingClientRect();
-    const sigilCenterX = sigilRect.left + sigilRect.width / 2;
-    const sigilCenterY = sigilRect.top + sigilRect.height / 2;
+		console.log("Trigger count:", triggers.length);
+		console.log("Trigger node(s):", triggers);
 
-    const dx = e.clientX - sigilCenterX;
-    const dy = e.clientY - sigilCenterY;
-    const distance = Math.sqrt(dx * dx + dy * dy);
+		const form = document.getElementById("modal");
 
-    // Distance for hot and cold game with the cursor :)
+		if (!modal || !closeButton || !form || triggers.length === 0) {
+			console.warn("Modal elements missing on this page.");
+			return;
+		}
 
-    if (distance < 400) {
-      document.body.style.cursor = batCursor;
-    } else {
-      document.body.style.cursor = "auto";
-    }
-  });
+		triggers.forEach((trigger, i) => {
+			console.log(`Attaching listener to trigger[${i}]:`, trigger);
 
+			trigger.addEventListener("click", (e) => {
+				console.log(`Trigger[${i}] clicked`);
+				e.preventDefault();
+				modal.classList.remove("hidden");
+				document.body.style.overflow = "hidden";
+			});
+		});
 
-  // --------------  CONSTELLATION ANIMATIONS || ABOUT PAGE  --------------
+		closeButton.addEventListener("click", () => {
+			modal.classList.add("hidden");
+			document.body.style.overflow = "";
+			form.reset();
+		});
 
- document.querySelectorAll('.input-group input, .input-group textarea').forEach((field) => {
-    field.addEventListener('input', () => {
-      const label = field.parentElement.querySelector('label');
-      if (field.value.trim() !== '') {
-        label.classList.add('hidden-label');
-      } else {
-        label.classList.remove('hidden-label');
-      }
-    });
-  });
+		let modalJustOpened = false;
 
-  if ( // CONTACT MODAL
-  document.body.classList.contains("about-page") ||
-  document.body.classList.contains("project-page") ||
-  document.body.classList.contains("landing-page")
-){
-    const modal = document.getElementById("contact-modal");
-    const closeButton = document.querySelector(".close-button");
-    const triggers = document.querySelectorAll(".contact-trigger");
-    const form = document.getElementById("modal");
+		function openModal() {
+			modal.classList.remove("hidden");
+			modalJustOpened = true;
+			setTimeout(() => (modalJustOpened = false), 100);
+		}
 
-    if (!modal || !closeButton || !form || triggers.length === 0) {
-      console.warn("Modal elements missing on this page.");
-      return;
-    }
+		window.addEventListener("click", function (event) {
+			const isVisible = !modal.classList.contains("hidden");
+			const clickedOutsideForm = !modal
+				.querySelector(".form-content")
+				.contains(event.target);
+			const clickedTrigger = event.target.closest(".contact-trigger");
 
-    triggers.forEach((trigger) => {
-      trigger.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.classList.remove("hidden");
-        document.body.style.overflow = "hidden";
-      });
-    });
+			if (
+				isVisible &&
+				clickedOutsideForm &&
+				!modalJustOpened &&
+				!clickedTrigger
+			) {
+				modal.classList.add("hidden");
+				document.body.style.overflow = "";
+				form.reset();
+			}
+		});
 
-    closeButton.addEventListener("click", () => {
-      modal.classList.add("hidden");
-      document.body.style.overflow = "";
-      form.reset();
-    });
+		window.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+				modal.classList.add("hidden");
+				document.body.style.overflow = "";
+				form.reset();
+			}
+		});
 
-    let modalJustOpened = false;
+		window.addEventListener("load", () => {
+			form.reset();
+		});
+	}
 
-    function openModal() {
-      modal.classList.remove("hidden");
-      modalJustOpened = true;
-      setTimeout(() => (modalJustOpened = false), 100);
-    }
+	if (document.body.classList.contains("about-page")) {
+		const inputs = document.querySelectorAll(
+			".input-group input, .input-group textarea"
+		);
+		const formElement = document.getElementById("modal");
 
-    window.addEventListener("click", function (event) {
-      const isVisible = !modal.classList.contains("hidden");
-      const clickedOutsideForm = !modal
-        .querySelector(".form-content")
-        .contains(event.target);
-      const clickedTrigger = event.target.closest(".contact-trigger");
+		if (!formElement || inputs.length === 0) {
+			console.warn("Form or inputs missing on About page.");
+			return;
+		}
 
-      if (isVisible && clickedOutsideForm && !modalJustOpened && !clickedTrigger) {
-        modal.classList.add("hidden");
-        document.body.style.overflow = "";
-        form.reset();
-      }
-    });
+		inputs.forEach((input) => {
+			const label = input.previousElementSibling;
 
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-        modal.classList.add("hidden");
-        document.body.style.overflow = "";
-        form.reset();
-      }
-    });
+			input.addEventListener("input", () => {
+				const hasValue = input.value.trim() !== "";
+				label.style.display = hasValue ? "none" : "inline";
+			});
+		});
 
-    window.addEventListener("load", () => {
-      form.reset();
-    });
-  }
+		formElement.addEventListener("reset", () => {
+			inputs.forEach((input) => {
+				const label = input.previousElementSibling;
+				label.style.display = "inline";
+			});
+		});
+	}
 
-  if (document.body.classList.contains("about-page")) {
-    const inputs = document.querySelectorAll(".input-group input, .input-group textarea");
-    const formElement = document.getElementById("modal");
+	// PROJECT CARDS THAT HAVE EVENT LISTENERS FOR README TYPE INFORMATION
+	if (document.body.classList.contains("project-page")) {
+		const overlay = document.getElementById("project-overlay");
+		const detailsContainer = overlay.querySelector(".project-details");
+		const closeOverlayBtn = overlay.querySelector(".close-overlay");
 
-    if (!formElement || inputs.length === 0) {
-      console.warn("Form or inputs missing on About page.");
-      return;
-    }
-
-    inputs.forEach((input) => {
-      const label = input.previousElementSibling;
-
-      input.addEventListener("input", () => {
-        const hasValue = input.value.trim() !== "";
-        label.style.display = hasValue ? "none" : "inline";
-      });
-    });
-
-    formElement.addEventListener("reset", () => {
-      inputs.forEach((input) => {
-        const label = input.previousElementSibling;
-        label.style.display = "inline";
-      });
-    });
-  }
-
-  // TITLE SWITCHES IN ABOUT ME
-  const titles = [
-  "Software Developer",
-  "Code Cartographer",
-  "Digital Mystic",
-  "Ritual Architect",
-  "Interface Alchemist",
-  "Chaos-Coded Developer",
-  "Debug Strategist",
-];
-
-let current = 0;
-let previous = current;
-let titleIntervalStarted = false;
-
-const switchTitle = document.getElementById("nameTitle");
-
-function fadeOut(element, callback) {
-  element.style.opacity = 0;
-  requestAnimationFrame(() => {
-    setTimeout(callback, 500); // matches CSS transition
-  });
-}
-
-function fadeIn(element) {
-  requestAnimationFrame(() => {
-    element.style.opacity = 1;
-  });
-}
-
-function startTitleSwitcher() {
-  if (titleIntervalStarted || !switchTitle) return;
-  titleIntervalStarted = true;
-
-  switchTitle.textContent = titles[current];
-
-  setInterval(() => {
-    fadeOut(switchTitle, () => {
-      let next;
-      do {
-        next = Math.floor(Math.random() * titles.length);
-      } while (next === previous);
-
-      current = next;
-      previous = current;
-
-      switchTitle.textContent = titles[current];
-      fadeIn(switchTitle);
-    });
-  }, 3000);
-}
-
-startTitleSwitcher();
-
-  // PROJECT CARDS THAT HAVE EVENT LISTENERS FOR README TYPE INFORMATION
-  if (document.body.classList.contains("project-page")) {
-    const overlay = document.getElementById("project-overlay");
-    const detailsContainer = overlay.querySelector(".project-details");
-    const closeOverlayBtn = overlay.querySelector(".close-overlay");
-
-    function getProjectDetails(id) {
-      if (id === "discord-bot-humphrey") {
-        return `
+		function getProjectDetails(id) {
+			if (id === "discord-bot-humphrey") {
+				return `
           <h2 class="card-header">Humphrey: Pomodoro Bot <a href="https://github.com/LiaWritesCode"><img src="assets/images/github.png" class="github-project"></a></h2> 
           <div class="card-divider"></div>
           <div class="readme-container">
@@ -225,10 +167,10 @@ startTitleSwitcher();
           <li>/sass because my squirrel son was a fluffball of sass, of course his bot twin will be the same!</li>
           <li> /add, /todo, /remove to show you, add to, remove a task off your to-do list</li></ul>
           `;
-      }
+			}
 
-      if (id === "discord-bot-penumbra") {
-        return `
+			if (id === "discord-bot-penumbra") {
+				return `
             <h2 class="card-header">Penumbra: Emotional Support Bot</h2>
           <div class="card-divider"></div>
           <div class="readme-container">
@@ -237,91 +179,231 @@ startTitleSwitcher();
           </div></div></div></div>
           <p>Information on this bot is still in the works as it is more complex than a pomodoro bot. Please check back at a later time :)</p>
           `;
-      }
-      return `
+			}
+			return `
       <p>No details available for this project quite yet!</p>
       `;
-    }
+		}
 
-    document.querySelectorAll(".project-card").forEach((card) => {
-      card.addEventListener("click", () => {
-        const projectId = card.dataset.project;
-        const content = getProjectDetails(projectId);
-        detailsContainer.innerHTML = content;
+		document.querySelectorAll(".project-card").forEach((card) => {
+			card.addEventListener("click", () => {
+				const projectId = card.dataset.project;
+				const content = getProjectDetails(projectId);
+				detailsContainer.innerHTML = content;
 
-        overlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-      });
-    });
+				overlay.classList.add("active");
+				document.body.style.overflow = "hidden";
+			});
+		});
 
-    function closeOverlay() {
-      overlay.classList.remove("active");
-      document.body.style.overflow = "";
-      detailsContainer.innerHTML = "";
-    }
+		function closeOverlay() {
+			overlay.classList.remove("active");
+			document.body.style.overflow = "";
+			detailsContainer.innerHTML = "";
+		}
 
-    closeOverlayBtn.addEventListener("click", closeOverlay);
+		closeOverlayBtn.addEventListener("click", closeOverlay);
 
-    // escape key event listener!
+		// escape key event listener!
 
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && overlay.classList.contains("active")) {
-        closeOverlay();
-      }
-    });
+		window.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && overlay.classList.contains("active")) {
+				closeOverlay();
+			}
+		});
 
-    // clicking outside box to close!
+		// clicking outside box to close!
 
-    overlay.addEventListener("click", (e) => {
-      if (!e.target.closest(".overlay-content")) {
-        closeOverlay();
-      }
-    });
-  }
+		overlay.addEventListener("click", (e) => {
+			if (!e.target.closest(".overlay-content")) {
+				closeOverlay();
+			}
+		});
+	}
 
-  // -------------- SVG ORION STAR INFORMATION AND BEHAVIOR --------------
-  if (document.body.classList.contains("landing-page")) {
-    const hoverBox = document.getElementById("hover-box");
-    const hoverTitle = document.getElementById("star-title");
-    const hoverSummary = document.getElementById("star-summary");
-    const container = document.querySelector(".constellation-container");
+	// HOVER EFFECT FOR LANDING PAGE CONTACT BUTTON
+	const button = document.getElementById("contact-btn");
 
-    const hoverInfo = {
-      rigel: { title: "rigel", summary: "Programming Languages" },
-      bellatrix: { title: "bellatrix", summary: "Frameworks and Libraries" },
-      saiph: { title: "saiph", summary: "Databases, Tools, and Platforms" },
-      betelgeuse: { title: "betelgeuse", summary: "Soft Skills" },
-      alnilam: { title: "alnilam", summary: "Curiosity and Learning" },
-      mintaka: { title: "mintaka", summary: "Quirks and Curiosities" },
-      alnitak: { title: "alnitak", summary: "General About Me" },
-    };
+	button.addEventListener("mouseenter", () => {
+		button.classList.add("hovered");
+	});
 
-    document
-      .querySelectorAll("g.star > circle, g.betelgeuse > circle, g.rigel > circle")
-      .forEach((star) => {
-        star.addEventListener("mousemove", (event) => {
-          const id = star.id;
-          const info = hoverInfo[id];
+	button.addEventListener("mouseleave", () => {
+		button.classList.remove("hovered");
+	});
 
-          if (!info) return;
+	// --------------  RESPONSIVENESS AND LOGIC FOR SMALLER SCREENS  --------------
 
-          const rect = container.getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
+	const SCREEN_THRESHOLD = 768;
+	const isSmallScreen = () => window.innerWidth <= SCREEN_THRESHOLD;
 
-          hoverTitle.textContent = info.title;
-          hoverSummary.textContent = info.summary;
-          hoverBox.style.display = "block";
-          hoverBox.style.left = x + 10 + "px";
-          hoverBox.style.top = y + 10 + "px";
-        });
+	window.addEventListener("resize", () => {
+		isSmallScreen = window.innerWidth <= SCREEN_THRESHOLD;
+	});
 
-        star.addEventListener("mouseleave", () => {
-          hoverBox.style.display = "none";
-        });
-      });
+	document.querySelectorAll(".star").forEach((star) => {
+		// for SVG constellation responsiveness or w/e
+		star.addEventListener("click", () => {
+			const starData = star.dataset.info;
 
-    /*
+			if (isSmallScreen()) {
+				openModal(starData);
+			} else {
+				updateInfoBox(starData);
+			}
+		});
+	});
+
+	// --------------  POP UP FOR WHEN SCREEN HITS SIZE LIMIT  --------------
+	const modal = document.getElementById("star-modal");
+	const starContent = document.getElementById("modal-star-info");
+	const closeBtn = document.querySelector(".close-modal");
+
+	function openModal(id) {
+		const message = starInfo[id];
+		if (!message) return;
+
+		starContent.innerHTML = message;
+		modal.classList.remove("hidden");
+		document.body.style.overflow = "hidden";
+	}
+
+	function closeModal() {
+		modal.classList.add("hidden");
+		starContent.innerHTML = "";
+		document.body.style.overflow = "";
+	}
+
+	closeBtn.addEventListener("click", closeModal);
+
+	modal.addEventListener("click", (e) => {
+		// for clicking outside since buttons are for losers
+		if (e.target === modal) {
+			closeModal();
+		}
+	});
+
+	// -------------- SECRET SIGIL --------------
+
+	const sigil = document.querySelector(".sigil-container");
+	const batCursor = 'url("assets/bat.cur"), auto';
+
+	function handleCursor(e) {
+		const sigilRect = sigil.getBoundingClientRect();
+		const sigilCenterX = sigilRect.left + sigilRect.width / 2;
+		const sigilCenterY = sigilRect.top + sigilRect.height / 2;
+
+		const dx = e.clientX - sigilCenterX;
+		const dy = e.clientY - sigilCenterY;
+		const distance = Math.sqrt(dx * dx + dy * dy);
+
+		document.body.style.cursor = distance < 400 ? batCursor : "auto";
+	}
+
+	if (!isSmallScreen()) {
+		document.addEventListener("mousemove", handleCursor);
+	}
+
+	// TITLE SWITCHES IN ABOUT ME
+	const titles = [
+		"Software Developer",
+		"Code Cartographer",
+		"Digital Mystic",
+		"Ritual Architect",
+		"Interface Alchemist",
+		"Chaos-Coded Developer",
+		"Debug Strategist",
+	];
+
+	let current = 0;
+	let previous = current;
+	let titleIntervalStarted = false;
+
+	const switchTitle = document.getElementById("nameTitle");
+
+	function fadeOut(element, callback) {
+		element.style.opacity = 0;
+		requestAnimationFrame(() => {
+			setTimeout(callback, 500);
+		});
+	}
+
+	function fadeIn(element) {
+		requestAnimationFrame(() => {
+			element.style.opacity = 1;
+		});
+	}
+
+	function startTitleSwitcher() {
+		if (titleIntervalStarted || !switchTitle) return;
+		titleIntervalStarted = true;
+
+		switchTitle.textContent = titles[current];
+
+		setInterval(() => {
+			fadeOut(switchTitle, () => {
+				let next;
+				do {
+					next = Math.floor(Math.random() * titles.length);
+				} while (next === previous);
+
+				current = next;
+				previous = current;
+
+				switchTitle.textContent = titles[current];
+				fadeIn(switchTitle);
+			});
+		}, 3000);
+	}
+
+	startTitleSwitcher();
+
+	// -------------- SVG ORION STAR INFORMATION AND BEHAVIOR --------------
+	if (document.body.classList.contains("landing-page")) {
+		const hoverBox = document.getElementById("hover-box");
+		const hoverTitle = document.getElementById("star-title");
+		const hoverSummary = document.getElementById("star-summary");
+		const container = document.querySelector(".constellation-container");
+
+		const hoverInfo = {
+			rigel: { title: "rigel", summary: "Programming Languages" },
+			bellatrix: { title: "bellatrix", summary: "Frameworks and Libraries" },
+			saiph: { title: "saiph", summary: "Databases, Tools, and Platforms" },
+			betelgeuse: { title: "betelgeuse", summary: "Soft Skills" },
+			alnilam: { title: "alnilam", summary: "Curiosity and Learning" },
+			mintaka: { title: "mintaka", summary: "Quirks and Curiosities" },
+			alnitak: { title: "alnitak", summary: "General About Me" },
+		};
+
+		if (!isSmallScreen()) {
+			document
+				.querySelectorAll(
+					"g.star > circle, g.betelgeuse > circle, g.rigel > circle"
+				)
+				.forEach((star) => {
+					star.addEventListener("mousemove", (event) => {
+						const id = star.id;
+						const info = hoverInfo[id];
+						if (!info) return;
+
+						const rect = container.getBoundingClientRect();
+						const x = event.clientX - rect.left;
+						const y = event.clientY - rect.top;
+
+						hoverTitle.textContent = info.title;
+						hoverSummary.textContent = info.summary;
+						hoverBox.style.display = "block";
+						hoverBox.style.left = x + 10 + "px";
+						hoverBox.style.top = y + 10 + "px";
+					});
+
+					star.addEventListener("mouseleave", () => {
+						hoverBox.style.display = "none";
+					});
+				});
+		}
+
+		/*
 **4 surrounding stars in Orion:** 
 - Programming languages 
 - Frameworks & Libraries 
@@ -334,8 +416,8 @@ startTitleSwitcher();
 - Creative endeavors and learning 
 (how i learn, creative dreams/endeavors that i want to work on or may be working on) */
 
-    const starInfo = {
-      rigel: `<h2 class="info-head"> >> Programming Languages</h2>
+		const starInfo = {
+			rigel: `<h2 class="info-head"> >> Programming Languages</h2>
   <p class="info-text">Rigel is Orion's brightest star, the blue supergiant that burns with force. Its presence anchors the constellation at its foot, much like programming languages anchor every system, thus became the marker of all my language knowledge.</p>
   <ul>
   <li>HTML</li>
@@ -345,14 +427,14 @@ startTitleSwitcher();
   </ul>
   `,
 
-      bellatrix: `<h2 class="info-head"> >> Frameworks and Libraries</h2>
+			bellatrix: `<h2 class="info-head"> >> Frameworks and Libraries</h2>
   <p class="info-text">Bellatrix is known as the female warrior and sits on Orion's left shoulder right where his tools can be wielded. Much like any tool, frameworks and libraries can be considered the weapons and armor of software.</p>
   <ul>
   <li>React</li>
   </ul>
    `,
 
-      saiph: `<h2 class="info-head"> >> Databases, Tools, and Platforms</h2>
+			saiph: `<h2 class="info-head"> >> Databases, Tools, and Platforms</h2>
   <p class="info-text">Saiph is Orion's other foot and balances Rigel's burning with its dimmer light. Saiph reflects the silent logic that represents the databases and platforms that help stabilize and manage the languages of Rigel within its unseen infrastructure.</p>
   <ul>
   <li>Git & GitHub</li>
@@ -362,7 +444,7 @@ startTitleSwitcher();
   </ul>
   `,
 
-      betelgeuse: `<h2 class="info-head"> >> Soft Skills</h2>
+			betelgeuse: `<h2 class="info-head"> >> Soft Skills</h2>
   <div class="info-scroll-content">
 <p class="info-text">Betelgeuse is the most known of this constellation as it should be because it is the heart of Orion. It is massive, unstable, red (green because of color palettes here), and nearing collapse, but it reflects the volatile power of soft skills when its done with jurisdiction like a flare.</p>
   <ul>
@@ -381,7 +463,7 @@ startTitleSwitcher();
   </div>
   `,
 
-      alnilam: `<h2 class="info-head"> >> An Inquisitive Mind</h2>
+			alnilam: `<h2 class="info-head"> >> An Inquisitive Mind</h2>
   <div class="info-scroll-content">
 <p class="info-text">Alnilam, the central star of Orion's famous belt. It is pure and radiant as ever and perfectly reflects my intellectual luminosity.</p>
   <ul class="justified-info">
@@ -399,7 +481,7 @@ startTitleSwitcher();
   </div>
   `,
 
-      mintaka: `<h2 class="info-head"> >> Quirks and Curiosities</h2>
+			mintaka: `<h2 class="info-head"> >> Quirks and Curiosities</h2>
   <div class="info-scroll-content">
 <p class="info-text">Mintaka is considered the gateway of where light meets shadow which highlights the duality that I personally live by. Consider it a ritual sparkle!</p>
   <ul>
@@ -420,7 +502,7 @@ startTitleSwitcher();
   </div>
   `,
 
-      alnitak: `<h2 class="info-head"> >> About Me</h2>
+			alnitak: `<h2 class="info-head"> >> About Me</h2>
   <p class="info-text">Alnitak is the closest to the Horsehead Nebula which is a region where stars are birthed. It was the perfect pick to give you some general information about me.</p>
  <p>------------------------------------------<br><br>
  I am a self-taught software engineer/developer located in New Jersey, USA. I
@@ -433,153 +515,165 @@ startTitleSwitcher();
             career. I know I do not know everything, so I will always be striving to learn
             more.</p>
   `,
-    };
+		};
 
-    const mainText = document.getElementById("main-info-text");
-    const starText = document.getElementById("star-info");
-    const closeButton = document.getElementById("close-btn");
+		const mainText = document.getElementById("main-info-text");
+		const starText = document.getElementById("star-info");
+		const closeButton = document.getElementById("close-btn");
 
-    if (closeButton) {
-      closeButton.addEventListener("click", () => {
-        starText.style.display = "none";
-        mainText.style.display = "block";
-        document.querySelector(".info-text").style.display = "block";
-        document.getElementById("star-header").innerHTML = "";
-        closeButton.style.display = "none";
-        document.getElementById("info-box").scrollTop = 0;
-      });
-    }
+		if (closeButton) {
+			closeButton.addEventListener("click", () => {
+				starText.style.display = "none";
+				mainText.style.display = "block";
+				document.querySelector(".info-text").style.display = "block";
+				document.getElementById("star-header").innerHTML = "";
+				closeButton.style.display = "none";
+				document.getElementById("info-box").scrollTop = 0;
+			});
+		}
 
-    document
-      .querySelectorAll("g.star > circle, g.betelgeuse > circle, g.rigel > circle")
-      .forEach((star) => {
-        star.addEventListener("click", () => {
-          const id = star.id;
-          const message = starInfo[id];
+		document
+			.querySelectorAll(
+				"g.star > circle, g.betelgeuse > circle, g.rigel > circle"
+			)
+			.forEach((star) => {
+				star.addEventListener("click", () => {
+					const id = star.id;
+					const message = starInfo[id];
 
-          if (message) {
-            mainText.style.display = "none";
-            document.querySelector(".info-text").style.display = "none";
-            starText.style.display = "block";
-            if (closeButton) closeButton.style.display = "block";
+					if (!message) return;
 
-            // Extract header and inject body
-            const ghostDiv = document.createElement("div");
-            ghostDiv.innerHTML = message;
+					if (isSmallScreen()) {
+						// for the pop up on small
+						const modal = document.getElementById("star-modal");
+						const modalContent = document.getElementById("modal-star-info");
 
-            const header = ghostDiv.querySelector("h2");
-            const dynamicTitle = document.getElementById("star-header");
+						modalContent.innerHTML = message;
+						modal.classList.remove("hidden");
+						document.body.style.overflow = "hidden";
+					} else {
+						mainText.style.display = "none";
+						document.querySelector(".info-text").style.display = "none";
+						starText.style.display = "block";
+						if (closeButton) closeButton.style.display = "block";
 
-            if (header && dynamicTitle) {
-              dynamicTitle.innerHTML = "";
-              dynamicTitle.appendChild(header);
-            }
+						const ghostDiv = document.createElement("div");
+						ghostDiv.innerHTML = message;
 
-            ghostDiv.querySelector("h2")?.remove();
+						const header = ghostDiv.querySelector("h2");
+						const dynamicTitle = document.getElementById("star-header");
 
-            starText.innerHTML = `<div class="star-info-wrapper">${ghostDiv.innerHTML}</div>`;
-          }
-        });
-      });
+						if (header && dynamicTitle) {
+							dynamicTitle.innerHTML = "";
+							dynamicTitle.appendChild(header);
+						}
 
-    // -------------- SVG ANIMATED TWINKLING STARS --------------
+						ghostDiv.querySelector("h2")?.remove();
 
-    const stars = Array.from(document.querySelectorAll(".star, .betelgeuse, .rigel"));
-    let twinkledStars = new Set();
+						starText.innerHTML = `<div class="star-info-wrapper">${ghostDiv.innerHTML}</div>`;
+					}
+				});
+			});
 
-    function twinkleStar(star) {
-      star.style.opacity = "0.3";
-      star.style.filter = "brightness(1.8) drop-shadow(0 0 12px #fff)";
+		// -------------- SVG ANIMATED TWINKLING STARS --------------
 
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          star.style.opacity = "1";
-          star.style.filter = "brightness(3.5) drop-shadow(0 0 20px #fff)";
-        }, 600);
+		const stars = Array.from(
+			document.querySelectorAll(".star, .betelgeuse, .rigel")
+		);
+		let twinkledStars = new Set();
 
-        setTimeout(() => {
-          star.style.filter = "brightness(1) drop-shadow(0 0 4px #fff)";
-          resolve();
-        }, 1200);
-      });
-    }
+		function twinkleStar(star) {
+			star.style.opacity = "0.3";
+			star.style.filter = "brightness(1.8) drop-shadow(0 0 12px #fff)";
 
-    function twinkleBetelgeuse(star) {
-      star.style.opacity = "0.3";
-      star.style.filter = "drop-shadow(0 0 12px #c5ff47)";
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					star.style.opacity = "1";
+					star.style.filter = "brightness(3.5) drop-shadow(0 0 20px #fff)";
+				}, 600);
 
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          star.style.opacity = "1";
-          star.style.filter = "drop-shadow(0 0 20px #c5ff47)";
-        }, 600);
+				setTimeout(() => {
+					star.style.filter = "brightness(1) drop-shadow(0 0 4px #fff)";
+					resolve();
+				}, 1200);
+			});
+		}
 
-        setTimeout(() => {
-          star.style.filter = "drop-shadow(0 0 4px #c5ff47)";
-          resolve();
-        }, 1200);
-      });
-    }
+		function twinkleBetelgeuse(star) {
+			star.style.opacity = "0.3";
+			star.style.filter = "drop-shadow(0 0 12px #c5ff47)";
 
-    function twinkleRigel(star) {
-      star.style.opacity = "0.3";
-      star.style.filter = "drop-shadow(0 0 12px #b6a8e9)";
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					star.style.opacity = "1";
+					star.style.filter = "drop-shadow(0 0 20px #c5ff47)";
+				}, 600);
 
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          star.style.opacity = "1";
-          star.style.filter = "drop-shadow(0 0 20px #b6a8e9)";
-        }, 600);
+				setTimeout(() => {
+					star.style.filter = "drop-shadow(0 0 4px #c5ff47)";
+					resolve();
+				}, 1200);
+			});
+		}
 
-        setTimeout(() => {
-          star.style.filter = "drop-shadow(0 0 4px #b6a8e9)";
-          resolve();
-        }, 1200);
-      });
-    }
+		function twinkleRigel(star) {
+			star.style.opacity = "0.3";
+			star.style.filter = "drop-shadow(0 0 12px #b6a8e9)";
 
-    let shuffledStars = [];
-    let starIndex = 0;
+			return new Promise((resolve) => {
+				setTimeout(() => {
+					star.style.opacity = "1";
+					star.style.filter = "drop-shadow(0 0 20px #b6a8e9)";
+				}, 600);
 
-    function shuffleStars() {
-      shuffledStars = [...stars].sort(() => Math.random() - 0.5);
-      starIndex = 0;
-    }
+				setTimeout(() => {
+					star.style.filter = "drop-shadow(0 0 4px #b6a8e9)";
+					resolve();
+				}, 1200);
+			});
+		}
 
-    function rippleConstellation() {
-      stars.forEach((star, i) => {
-        setTimeout(() => {
-          star.classList.add("ripple");
-          setTimeout(() => {
-            star.classList.remove("ripple");
-          }, 1000);
-        }, i * 100);
-      });
-    }
+		let shuffledStars = [];
+		let starIndex = 0;
 
-    async function beginTwinkling() {
-      if (starIndex >= shuffledStars.length) {
-        rippleConstellation();
-        shuffleStars();
-      }
+		function shuffleStars() {
+			shuffledStars = [...stars].sort(() => Math.random() - 0.5);
+			starIndex = 0;
+		}
 
-      const star = shuffledStars[starIndex];
-      if (star.classList.contains("betelgeuse")) {
-        await twinkleBetelgeuse(star);
-      } else if (star.classList.contains("rigel")) {
-        await twinkleRigel(star);
-      } else {
-        await twinkleStar(star);
-      }
+		function rippleConstellation() {
+			stars.forEach((star, i) => {
+				setTimeout(() => {
+					star.classList.add("ripple");
+					setTimeout(() => {
+						star.classList.remove("ripple");
+					}, 1000);
+				}, i * 100);
+			});
+		}
 
-      starIndex++;
+		async function beginTwinkling() {
+			if (starIndex >= shuffledStars.length) {
+				rippleConstellation();
+				shuffleStars();
+			}
 
-      const delay = Math.random() * 2000 + 1000;
-      setTimeout(beginTwinkling, delay);
-    }
+			const star = shuffledStars[starIndex];
+			if (star.classList.contains("betelgeuse")) {
+				await twinkleBetelgeuse(star);
+			} else if (star.classList.contains("rigel")) {
+				await twinkleRigel(star);
+			} else {
+				await twinkleStar(star);
+			}
 
-    shuffleStars();
-    beginTwinkling();
-  }
-  
+			starIndex++;
+
+			const delay = Math.random() * 2000 + 1000;
+			setTimeout(beginTwinkling, delay);
+		}
+
+		shuffleStars();
+		beginTwinkling();
+	}
 });
